@@ -1,0 +1,11 @@
+{
+  "name": "salzburginharmony",
+  "private": true,
+  "description": "salzburginharmony.com – static site (src/ → docs/) for GitHub Pages",
+  "type": "module",
+  "scripts": {
+    "build": "node src/build.mjs",
+    "test": "node --test tests/consent.test.cjs tests/planner.test.cjs && node tests/check-pages.mjs",
+    "test:browser": "node tests/browser.mjs"
+  }
+}

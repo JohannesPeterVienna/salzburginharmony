@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /shop/
+Disallow: /hi/
+
+Sitemap: https://www.salzburginharmony.com/sitemap.xml
