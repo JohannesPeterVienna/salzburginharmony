@@ -79,7 +79,7 @@ for (const u of files) {
   // tour pages: tour-data json present and valid, station count matches
   if (/^\/(hi\/)?tours\/.+/.test(u)) {
     const j = (h.match(/<script id="tour-data" type="application\/json">([\s\S]*?)<\/script>/) || [])[1];
-    try { const data = JSON.parse(j); if (data.stations.length < 6 || data.stations.length > 8) p(u, `station count ${data.stations.length}`); if ((h.match(/<section class="station"/g) || []).length !== data.stations.length) p(u, 'station sections != tour data'); for (const s of data.stations) if (!s.alois || !s.theresa || !s.task || !s.body) p(u, 'station incomplete ' + s.id); } catch (e) { p(u, 'tour-data invalid'); }
+    try { const data = JSON.parse(j); if (data.stations.length < 6 || data.stations.length > 8) p(u, `station count ${data.stations.length}`); if ((h.match(/<section class="station"/g) || []).length !== data.stations.length) p(u, 'station sections != tour data'); for (const s of data.stations) if (!s.anton || !s.dora || !s.task || !s.body) p(u, 'station incomplete ' + s.id); } catch (e) { p(u, 'tour-data invalid'); }
     if (!/<figure class="sketch">/.test(h)) p(u, 'no route sketch');
     if (!/checked 6 November 2026|status 10\/2026|status 11\/2025|6 नवंबर 2026/.test(h)) p(u, 'practical box without check date');
   }

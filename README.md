@@ -7,4 +7,4 @@ Static site, built from `src/` into `docs/` (GitHub Pages, custom domain `www.sa
 - `npm run test:browser` – Playwright: every sitemap page at 390 and 1366 px (no JS errors, no horizontal overflow, no dead local links, ad boxes ≥150 px from controls).
 - `BILDER.md` – list of the photos/illustrations still to be dropped into `docs/assets/img/` (file names are already referenced).
 
-Hosts Alois and Felix are fictional, AI-generated characters; this is stated on the site. No trademarked film or family names are used anywhere on the site.
+Hosts Anton and Dora are fictional, AI-generated characters; this is stated on the site and in BILDNACHWEISE.md. No trademarked film or family names are used anywhere on the site.

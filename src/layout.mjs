@@ -12,8 +12,8 @@ export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;')
 export const words = (html) => html.replace(/<[^>]+>/g, ' ').split(/\s+/).filter((w) => /[\p{L}]/u.test(w)).length;
 
 const NAV = {
-  en: [['/', 'Home'], ['/tours/', 'Walks'], ['/planner/', 'Day planner'], ['/hosts/', 'Alois & Theresa'], ['/about/', 'About']],
-  de: [['/de/', 'Start'], ['/de/touren/', 'Spaziergänge'], ['/de/planer/', 'Tagesplaner'], ['/de/gastgeber/', 'Alois & Theresa'], ['/de/ueber/', 'Über']],
+  en: [['/', 'Home'], ['/tours/', 'Walks'], ['/planner/', 'Day planner'], ['/hosts/', 'Anton & Dora'], ['/about/', 'About']],
+  de: [['/de/', 'Start'], ['/de/touren/', 'Spaziergänge'], ['/de/planer/', 'Tagesplaner'], ['/de/gastgeber/', 'Anton & Dora'], ['/de/ueber/', 'Über']],
   hi: [['/hi/', 'होम'], ['/tours/', 'Walks (EN)'], ['/planner/', 'Day planner (EN)'], ['/about/', 'About (EN)']]
 };
 const LEGAL = {

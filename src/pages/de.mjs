@@ -3,11 +3,11 @@ import { adBox } from '../layout.mjs';
 
 export const hero = () => `<section class="hero"><div class="wrap"><div class="hero-card">
 <div><span class="kicker">Selbst geführte Spaziergänge · Salzburg</span>
-<h1>Salzburg zu Fuß, mit Alois und Theresa.</h1>
+<h1>Salzburg zu Fuß, mit Anton und Dora.</h1>
 <p class="lede">Acht Spaziergänge durch Gärten, Plätze, Hügel und Märkte Salzburgs, Station für Station erzählt von zwei fiktiven Gastgebern, die die Stadt kennen. Kostenlos lesbar, ohne App, ohne Anmeldung. Gastgeber wählen, starten, und der Spaziergang kommt am Handy mit.</p>
 <p class="row"><a class="btn" href="/de/touren/">Spaziergang wählen</a><a class="btn ghost" href="/de/planer/">Meinen Tag planen</a></p>
-<p class="small muted">Alois und Theresa sind KI-generierte, fiktive Figuren, keine echten Fremdenführer. Öffnungszeiten und Preise tragen auf jedem Spaziergang das Datum unserer Prüfung.</p></div>
-<div class="hosts"><div class="host"><img src="/assets/img/alois.png" alt="Alois, fiktiver Gastgeber: älterer Mann mit grauem Bart, grünem Filzhut und Trachtenweste" width="230" height="230"><b>Alois</b><span>Geschichte, Wege, Aussichten</span></div><div class="host"><img src="/assets/img/theresa.png" alt="Theresa, fiktive Gastgeberin: Frau mit geflochtenem blondem Haar in rotem Trachtenmieder" width="230" height="230"><b>Theresa</b><span>Gärten, Küche, Feste</span></div></div>
+<p class="small muted">Anton und Dora sind KI-generierte, fiktive Figuren, keine echten Fremdenführer. Öffnungszeiten und Preise tragen auf jedem Spaziergang das Datum unserer Prüfung.</p></div>
+<div class="hosts"><div class="host"><img src="/assets/img/anton.png" alt="Anton, fiktiver Gastgeber: älterer Mann mit grauem Bart, grünem Filzhut und Trachtenweste" width="230" height="230"><b>Anton</b><span>Geschichte, Wege, Aussichten</span></div><div class="host"><img src="/assets/img/dora.png" alt="Dora, fiktive Gastgeberin: Frau mit geflochtenem blondem Haar in rotem Trachtenmieder" width="230" height="230"><b>Dora</b><span>Gärten, Küche, Feste</span></div></div>
 </div></div></section>`;
 
 const card = (t, imgExists) => {
@@ -35,7 +35,7 @@ ${adBox('top', 'de')}
 <div><h2>So funktioniert ein Spaziergang</h2>
 <ol>
 <li><b>Zuerst lesen.</b> Jeder Spaziergang hat eine Einleitung, einen Kasten mit geprüften Öffnungszeiten und Preisen samt Prüfdatum, eine Skizze des Weges und sechs bis acht Stationen, deren Text ohne Skript lesbar ist.</li>
-<li><b>Gastgeber wählen.</b> Alois erzählt von den Erzbischöfen, den Mauern und den Aussichten; Theresa von Gärten, Küche und dem, was die Leute hier zu jeder Jahreszeit tun. Beide sind erfundene Figuren mit echtem Wissen über die Stadt.</li>
+<li><b>Gastgeber wählen.</b> Anton erzählt von den Erzbischöfen, den Mauern und den Aussichten; Dora von Gärten, Küche und dem, was die Leute hier zu jeder Jahreszeit tun. Beide sind erfundene Figuren mit echtem Wissen über die Stadt.</li>
 <li><b>Starten.</b> Der Modus zeigt eine Station nach der anderen mit Fortschrittsbalken, Bemerkung des Gastgebers und einer kleinen Beobachtungsaufgabe. Er merkt sich, wo du stehen geblieben bist. Drucken oder als Text sichern geht jederzeit.</li>
 <li><b>Den Tag planen.</b> Der <a href="/de/planer/">Tagesplaner</a> addiert die Minuten an den Stationen und gibt dir einen Zeitplan zum Kopieren oder Drucken. Gehzeiten und Wartezeiten rechnet er nicht, und er sagt das auch.</li>
 </ol></div>
@@ -92,16 +92,16 @@ ${adBox('bottom', 'de')}
 
 export const hosts = () => `
 <span class="kicker">Die Gastgeber</span>
-<h1>Alois und Theresa</h1>
+<h1>Anton und Dora</h1>
 <p class="lede">Zwei erfundene Salzburger, die mit dir gehen. Sie sind keine echten Personen, keine Fremdenführer mit Befugnis und keine Fotos von irgendjemandem; sie sind KI-generierte Figuren mit gleichbleibendem Gesicht, eigener Stimme und eigenen Interessen, geschaffen für diese Website, damit die Spaziergänge einen Ton haben statt einer Broschüre.</p>
 <div class="two">
-<div><img src="/assets/img/alois.png" alt="Alois, fiktiver Gastgeber" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Alois</h2>
-<p>Ein älterer Mann mit grauem Bart, grünem Filzhut mit Federbüschel und Lodenweste. Alois erzählt von den Fürsterzbischöfen, den Mauern, den Hügeln und den Aussichten. Er zieht den Fußweg der Festungsbahn vor, beginnt früh und hat zu jedem Platz eine Meinung. Er ist der, der dir sagt, dass für den Residenzplatz 55 Häuser abgerissen wurden, dass die Festung nie eingenommen wurde und dass der Untersberg die Stadt gebaut hat.</p></div>
-<div><img src="/assets/img/theresa.png" alt="Theresa, fiktive Gastgeberin" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Theresa</h2>
-<p>Eine Frau mit geflochtenem blondem Haar im roten Mieder der Salzburger Tracht. Theresa kennt die Gärten, die Märkte, die Bäckerei mit dem Wasserrad und das, was die Salzburger zu jeder Jahreszeit tun. Sie sagt dir, wo du dich hinsetzt, was du isst, wann das Licht stimmt und wann das Handy in die Tasche gehört. Sie führt den Hellbrunn- und den Winterspaziergang.</p></div>
+<div><img src="/assets/img/anton.png" alt="Anton, fiktiver Gastgeber" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Anton</h2>
+<p>Ein älterer Mann mit grauem Bart, grünem Filzhut mit Federbüschel und Lodenweste. Anton erzählt von den Fürsterzbischöfen, den Mauern, den Hügeln und den Aussichten. Er zieht den Fußweg der Festungsbahn vor, beginnt früh und hat zu jedem Platz eine Meinung. Er ist der, der dir sagt, dass für den Residenzplatz 55 Häuser abgerissen wurden, dass die Festung nie eingenommen wurde und dass der Untersberg die Stadt gebaut hat.</p></div>
+<div><img src="/assets/img/dora.png" alt="Dora, fiktive Gastgeberin" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Dora</h2>
+<p>Eine Frau mit geflochtenem blondem Haar im roten Mieder der Salzburger Tracht. Dora kennt die Gärten, die Märkte, die Bäckerei mit dem Wasserrad und das, was die Salzburger zu jeder Jahreszeit tun. Sie sagt dir, wo du dich hinsetzt, was du isst, wann das Licht stimmt und wann das Handy in die Tasche gehört. Sie führt den Hellbrunn- und den Winterspaziergang.</p></div>
 </div>
 <h2>Wie sie entstanden sind</h2>
-<p>Die Porträts wurden mit einem Bildmodell aus einer schriftlichen Beschreibung erzeugt und von uns zugeschnitten; sie zeigen keine realen Personen. Ihre Kleidung ist die Tracht der Region Salzburg, wie sie das Volkskundemuseum in Hellbrunn zeigt, gewählt, weil Besucher sie erwarten und weil die Leute hier sie bei Festen tatsächlich tragen. Ihre Bemerkungen auf jedem Spaziergang schreiben wir mit KI-Unterstützung und prüfen die Fakten gegen die auf jeder Seite genannten Quellen; die Meinungen sind absichtlich ihre, nicht unsere, und du darfst Alois in der Frage Festungsbahn widersprechen.</p>
+<p>Die Porträts wurden mit einem Bildmodell aus einer schriftlichen Beschreibung erzeugt und von uns zugeschnitten; sie zeigen keine realen Personen. Ihre Kleidung ist die Tracht der Region Salzburg, wie sie das Volkskundemuseum in Hellbrunn zeigt, gewählt, weil Besucher sie erwarten und weil die Leute hier sie bei Festen tatsächlich tragen. Ihre Bemerkungen auf jedem Spaziergang schreiben wir mit KI-Unterstützung und prüfen die Fakten gegen die auf jeder Seite genannten Quellen; die Meinungen sind absichtlich ihre, nicht unsere, und du darfst Anton in der Frage Festungsbahn widersprechen.</p>
 <h2>Was sie nicht sind</h2>
 <p>Sie sprechen nicht, bewegen sich nicht und beantworten keine Fragen; es gibt keinen Chat. Sie vertreten weder Tourismus Salzburg noch die Stadt Salzburg noch eine Sehenswürdigkeit. Sie beruhen auf keiner realen Person, keiner historischen Figur und keiner Figur aus einem Buch, Film oder Stück, und die Spaziergänge erzählen keine solche Geschichte nach; sie beschreiben reale Orte mit ihrer realen Geschichte und überlassen den Rest dir.</p>
 <p class="reviewed">Zuletzt geprüft: 6. November 2026.</p>`;
@@ -136,7 +136,7 @@ export const imprint = () => `
 <h2>Grundlegende Richtung (§ 25 MedienG)</h2>
 <p>Salzburg in Harmony veröffentlicht selbst geführte Spazierwege und Hintergrundinformationen über Salzburg für Besucher. Die Inhalte sind allgemeine Reiseinformation; sie sind keine amtliche Information einer Behörde oder Sehenswürdigkeit und keine Garantie für Zugang oder Öffnung.</p>
 <h2>Fiktive Gastgeber und KI</h2>
-<p>Die Gastgeber Alois und Theresa sind fiktive, KI-generierte Figuren. Sie stellen keine realen Personen dar. Texte entstehen mit KI-Unterstützung und werden redaktionell geprüft.</p>
+<p>Die Gastgeber Anton und Dora sind fiktive, KI-generierte Figuren. Sie stellen keine realen Personen dar. Texte entstehen mit KI-Unterstützung und werden redaktionell geprüft.</p>
 <h2>Externe Links</h2>
 <p>Externe Links wurden bei Veröffentlichung oder letzter Prüfung der Seite kontrolliert. Auf Inhalte fremder Websites haben wir keinen Einfluss und übernehmen dafür keine Verantwortung.</p>
 <h2>Verbraucherstreitigkeiten</h2>

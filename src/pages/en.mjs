@@ -3,11 +3,11 @@ import { adBox } from '../layout.mjs';
 
 export const hero = (tours) => `<section class="hero"><div class="wrap"><div class="hero-card">
 <div><span class="kicker">Self-guided walks · Salzburg, Austria</span>
-<h1>Walk Salzburg with Alois and Theresa.</h1>
+<h1>Walk Salzburg with Anton and Dora.</h1>
 <p class="lede">Eight walks through the gardens, squares, hills and markets of Salzburg, told stop by stop by two fictional hosts who know the city. Free to read, no app, no sign-up. Pick a host, press start, and the walk comes with you on your phone.</p>
 <p class="row"><a class="btn" href="/tours/">Choose a walk</a><a class="btn ghost" href="/planner/">Plan my day</a></p>
-<p class="small muted">Alois and Theresa are AI-generated, fictional characters, not real guides. Opening times and prices on every walk carry the date we checked them.</p></div>
-<div class="hosts"><div class="host"><img src="/assets/img/alois.png" alt="Alois, a fictional host: an older man with a grey beard, a green felt hat and a traditional waistcoat" width="230" height="230"><b>Alois</b><span>history, paths and views</span></div><div class="host"><img src="/assets/img/theresa.png" alt="Theresa, a fictional host: a woman with braided blond hair in a red traditional bodice" width="230" height="230"><b>Theresa</b><span>gardens, food and festivals</span></div></div>
+<p class="small muted">Anton and Dora are AI-generated, fictional characters, not real guides. Opening times and prices on every walk carry the date we checked them.</p></div>
+<div class="hosts"><div class="host"><img src="/assets/img/anton.png" alt="Anton, a fictional host: an older man with a grey beard, a green felt hat and a traditional waistcoat" width="230" height="230"><b>Anton</b><span>history, paths and views</span></div><div class="host"><img src="/assets/img/dora.png" alt="Dora, a fictional host: a woman with braided blond hair in a red traditional bodice" width="230" height="230"><b>Dora</b><span>gardens, food and festivals</span></div></div>
 </div></div></section>`;
 
 export const tourCard = (t, lang = 'en', imgExists) => {
@@ -24,14 +24,14 @@ ${adBox('top')}
 <div><h2>How a walk works</h2>
 <ol>
 <li><b>Read it first.</b> Every walk has an introduction, a box with checked opening times and prices, a sketch of the route, and six to eight stops with the full text visible without any script.</li>
-<li><b>Choose a host.</b> Alois tells you about the archbishops, the walls and the view; Theresa about the gardens, the food and what people do here in each season. Both are invented characters with real knowledge of the city.</li>
+<li><b>Choose a host.</b> Anton tells you about the archbishops, the walls and the view; Dora about the gardens, the food and what people do here in each season. Both are invented characters with real knowledge of the city.</li>
 <li><b>Press start.</b> Walk mode shows one stop at a time with a progress bar, the host's remark and a small observation task. It remembers where you stopped. Print it or save the plan as text.</li>
 <li><b>Plan the day.</b> The <a href="/planner/">day planner</a> adds up your minutes at the stops and gives you a schedule to copy or print. It does not calculate walking times or queues, and it says so.</li>
 </ol></div>
 <div><h2>Why these walks</h2>
 <p>Salzburg is small, baroque and built around a river and three hills, which makes it a walker's city. Most visitors see the same squares on a tight schedule and miss the convent above the roofs, the walls on the hill across the water, the pond south of town and the market where locals buy their cheese. These walks put the famous places and the quiet ones in the same order a Salzburger would choose.</p>
 <p>Everything factual on this site is checked against the official sources named at the bottom of each walk, with the date we looked. Where we could not verify a price or an opening time, we say so and point you to the operator. Where a place is private, like Leopoldskron, we tell you to stay outside. Read more <a href="/about/">about how the site is made</a>.</p>
-<p class="quote">“The best thing I can tell you about Salzburg costs a few euros and comes from a bakery hatch by a water wheel.” – Theresa, on the Getreidegasse walk</p></div>
+<p class="quote">“The best thing I can tell you about Salzburg costs a few euros and comes from a bakery hatch by a water wheel.” – Dora, on the Getreidegasse walk</p></div>
 </section>
 <section class="cta"><h2>Planning a first visit from far away?</h2>
 <p>Start with <a href="/tours/mirabell-to-fortress/">Mirabell to the Fortress</a> for the classic line, add <a href="/tours/kapuzinerberg/">the Kapuzinerberg</a> for the view most people miss, and keep <a href="/tours/hellbrunn/">Hellbrunn</a> for a half day. Coming in December? <a href="/tours/winter-salzburg/">Winter Salzburg</a> lists what is open and what is not.</p>
@@ -88,16 +88,16 @@ ${adBox('bottom')}
 
 export const hosts = () => `
 <span class="kicker">The hosts</span>
-<h1>Alois and Theresa</h1>
+<h1>Anton and Dora</h1>
 <p class="lede">Two invented Salzburgers who walk with you. They are not real people, not licensed guides and not photographs of anyone; they are AI-generated characters with a consistent face, a voice and a set of interests, created for this site so that the walks have a tone rather than a brochure.</p>
 <div class="two">
-<div><img src="/assets/img/alois.png" alt="Alois, fictional host" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Alois</h2>
-<p>An older man with a grey beard, a green felt hat with a tuft of feathers and a loden waistcoat. Alois talks about the prince-archbishops, the walls, the hills and the views. He prefers the footpath to the funicular, starts early, and has an opinion about every square. He is the one who tells you that fifty-five houses were cleared for the Residenzplatz, that nobody ever took the fortress, and that the Untersberg built the town.</p></div>
-<div><img src="/assets/img/theresa.png" alt="Theresa, fictional host" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Theresa</h2>
-<p>A woman with braided blond hair in a red bodice of the regional dress. Theresa knows the gardens, the markets, the bakery with the water wheel and what people in Salzburg do in each season. She tells you where to sit, what to eat, when the light is right and when to put the phone away. She leads the Hellbrunn and the winter walks.</p></div>
+<div><img src="/assets/img/anton.png" alt="Anton, fictional host" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Anton</h2>
+<p>An older man with a grey beard, a green felt hat with a tuft of feathers and a loden waistcoat. Anton talks about the prince-archbishops, the walls, the hills and the views. He prefers the footpath to the funicular, starts early, and has an opinion about every square. He is the one who tells you that fifty-five houses were cleared for the Residenzplatz, that nobody ever took the fortress, and that the Untersberg built the town.</p></div>
+<div><img src="/assets/img/dora.png" alt="Dora, fictional host" width="400" height="400" style="border-radius:50%;max-width:260px"><h2>Dora</h2>
+<p>A woman with braided blond hair in a red bodice of the regional dress. Dora knows the gardens, the markets, the bakery with the water wheel and what people in Salzburg do in each season. She tells you where to sit, what to eat, when the light is right and when to put the phone away. She leads the Hellbrunn and the winter walks.</p></div>
 </div>
 <h2>How they were made</h2>
-<p>The portraits were generated with an image model from a written description and then cropped and prepared by us; they do not depict real persons. The dress they wear is the traditional clothing of the Salzburg region, as shown in the folklore museum at Hellbrunn, chosen because it is what visitors expect to see and what people here do wear at festivals. Their remarks on each walk are written by us with AI assistance and checked for facts against the sources named on each page; the opinions are deliberately theirs, not ours, and you are welcome to disagree with Alois about the funicular.</p>
+<p>The portraits were generated with an image model from a written description and then cropped and prepared by us; they do not depict real persons. The dress they wear is the traditional clothing of the Salzburg region, as shown in the folklore museum at Hellbrunn, chosen because it is what visitors expect to see and what people here do wear at festivals. Their remarks on each walk are written by us with AI assistance and checked for facts against the sources named on each page; the opinions are deliberately theirs, not ours, and you are welcome to disagree with Anton about the funicular.</p>
 <h2>What they are not</h2>
 <p>They do not speak, animate or answer questions; there is no chat. They do not represent Salzburg Tourism, the City of Salzburg or any attraction. They are not based on any real person, historical figure or character from any book, film or play, and the walks do not retell any such story; they describe real places with their real history and leave the rest to you.</p>
 <p class="reviewed">Last checked: November 6, 2026.</p>`;
@@ -132,7 +132,7 @@ export const imprint = () => `
 <h2>Basic editorial line (§ 25 MedienG)</h2>
 <p>Salzburg in Harmony publishes self-guided walking routes and background information about Salzburg, Austria, for visitors. The content is general travel information; it is not official information of any authority or attraction and not a guarantee of access or opening.</p>
 <h2>Fictional hosts and AI</h2>
-<p>The hosts Alois and Theresa are fictional, AI-generated characters. They do not depict real persons. Texts are produced with AI assistance and checked editorially.</p>
+<p>The hosts Anton and Dora are fictional, AI-generated characters. They do not depict real persons. Texts are produced with AI assistance and checked editorially.</p>
 <h2>External links</h2>
 <p>External links were checked when the page was published or last reviewed. We have no influence on the content of other websites and are not responsible for it.</p>
 <h2>Consumer disputes</h2>

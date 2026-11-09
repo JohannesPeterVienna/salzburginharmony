@@ -9,7 +9,7 @@
  *     Google's CMP has priority: once it shows its message or reports a decision, the window closes and its stored
  *     choice is deleted. Pages marked html[data-google="off"] (imprint, privacy, contact, shop, 404) load no Google code;
  *     there "Privacy settings" opens the window only to view or change the choice.
- *  3. Tour mode: station by station with the chosen host (Alois/Theresa), progress in localStorage "sih-tour-<slug>".
+ *  3. Tour mode: station by station with the chosen host (Anton/Dora), progress in localStorage "sih-tour-<slug>".
  *  4. Day planner: localStorage "sih-plan" via SIHPlanner; export as text, print.
  */
 (function () {
@@ -263,8 +263,8 @@
 
   /* ---------------- host choice ---------------- */
   var HOST_KEY = 'sih-host';
-  function currentHost() { var h = load(HOST_KEY); return h === 'theresa' ? 'theresa' : 'alois'; }
-  function setHost(h) { store(HOST_KEY, h === 'theresa' ? 'theresa' : 'alois'); document.querySelectorAll('input[name="host"]').forEach(function (r) { r.checked = r.value === h; }); }
+  function currentHost() { var h = load(HOST_KEY); return h === 'dora' ? 'dora' : 'anton'; }
+  function setHost(h) { store(HOST_KEY, h === 'dora' ? 'dora' : 'anton'); document.querySelectorAll('input[name="host"]').forEach(function (r) { r.checked = r.value === h; }); }
 
   /* ---------------- tour mode ---------------- */
   function tourMode() {
@@ -285,7 +285,7 @@
     }
     function render(done) {
       var s = stations[idx], pct = Math.round(((done ? stations.length : idx) / stations.length) * 100);
-      var hostName = host === 'theresa' ? 'Theresa' : 'Alois';
+      var hostName = host === 'dora' ? 'Dora' : 'Anton';
       var h = '<div class="tm"><p class="step">' + tour.title + ' · ' + t('stop', 'Stop') + ' ' + (idx + 1) + ' / ' + stations.length + '</p>' +
         '<div class="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="' + pct + '"><i style="width:' + pct + '%"></i></div>';
       if (done) {

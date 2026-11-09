@@ -1,9 +1,9 @@
 // Interface strings for the shell and the runtime (tour mode, planner, statistics window).
 const en = {
-  skip: 'Skip to content', tagline: 'Walks with Alois & Theresa', main_nav: 'Main navigation', language: 'Language', breadcrumb: 'Breadcrumb',
+  skip: 'Skip to content', tagline: 'Walks with Anton & Dora', main_nav: 'Main navigation', language: 'Language', breadcrumb: 'Breadcrumb',
   ad_label: 'Advertisement', imprint: 'Imprint', privacy: 'Privacy policy', contact: 'Contact', privacy_settings: 'Privacy settings',
   footer_about: 'Self-guided walks through Salzburg, Austria, with two fictional hosts. Independent, free to read, written and checked by AdStern in Vienna.',
-  footer_ai: 'Alois and Theresa are AI-generated, fictional characters. Texts are written with AI assistance and checked against the sources named on each page.',
+  footer_ai: 'Anton and Dora are AI-generated, fictional characters. Texts are written with AI assistance and checked against the sources named on each page.',
   footer_explore: 'Explore', footer_hosts: 'Meet the hosts', footer_legal: 'Legal',
   footer_fine: 'An independent project. Not affiliated with the City of Salzburg, Salzburg Tourism or any attraction named on this site.',
   sketch_aria: 'Schematic sketch of the route with numbered stops', sketch_caption: 'Schematic sketch, not to scale and not a map. Use a current city map or the signposts on site for directions.',
@@ -25,10 +25,10 @@ const en = {
   }
 };
 const de = {
-  skip: 'Zum Inhalt', tagline: 'Spaziergänge mit Alois & Theresa', main_nav: 'Hauptnavigation', language: 'Sprache', breadcrumb: 'Pfad',
+  skip: 'Zum Inhalt', tagline: 'Spaziergänge mit Anton & Dora', main_nav: 'Hauptnavigation', language: 'Sprache', breadcrumb: 'Pfad',
   ad_label: 'Werbung', imprint: 'Impressum', privacy: 'Datenschutz', contact: 'Kontakt', privacy_settings: 'Datenschutz-Einstellungen',
   footer_about: 'Selbst geführte Spaziergänge durch Salzburg mit zwei fiktiven Gastgebern. Unabhängig, kostenlos lesbar, geschrieben und geprüft von AdStern in Wien.',
-  footer_ai: 'Alois und Theresa sind KI-generierte, fiktive Figuren. Die Texte entstehen mit KI-Unterstützung und werden gegen die auf jeder Seite genannten Quellen geprüft.',
+  footer_ai: 'Anton und Dora sind KI-generierte, fiktive Figuren. Die Texte entstehen mit KI-Unterstützung und werden gegen die auf jeder Seite genannten Quellen geprüft.',
   footer_explore: 'Entdecken', footer_hosts: 'Die Gastgeber', footer_legal: 'Rechtliches',
   footer_fine: 'Ein unabhängiges Projekt. Keine Verbindung zur Stadt Salzburg, zu Tourismus Salzburg oder zu den genannten Sehenswürdigkeiten.',
   sketch_aria: 'Schematische Skizze des Weges mit nummerierten Stationen', sketch_caption: 'Schematische Skizze, nicht maßstäblich und keine Karte. Für den Weg bitte einen aktuellen Stadtplan oder die Wegweiser vor Ort nutzen.',

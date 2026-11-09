@@ -7,7 +7,7 @@ export const hero = () => `<section class="hero"><div class="wrap"><div class="h
 <p class="lede">साल्ज़बर्ग के बगीचों, चौकों, पहाड़ियों और बाज़ारों से होकर आठ सैर, जिन्हें शहर को जानने वाले दो काल्पनिक मेज़बान पड़ाव-दर-पड़ाव सुनाते हैं। पढ़ना निःशुल्क, कोई ऐप नहीं, कोई साइन-अप नहीं। मेज़बान चुनें, शुरू दबाएँ, और सैर आपके फ़ोन पर आपके साथ चलती है।</p>
 <p class="row"><a class="btn" href="/hi/tours/mirabell-to-fortress/">पहली सैर (हिन्दी मसौदा)</a><a class="btn ghost" href="/tours/">सभी सैर (अंग्रेज़ी)</a></p>
 <p class="small muted">अलोइस और थेरेसा AI-निर्मित, काल्पनिक पात्र हैं, असली गाइड नहीं। हर सैर पर खुलने के समय और कीमतों के साथ हमारी जाँच की तारीख दी गई है।</p></div>
-<div class="hosts"><div class="host"><img src="/assets/img/alois.png" alt="अलोइस, काल्पनिक मेज़बान: भूरी दाढ़ी, हरी टोपी और पारंपरिक वास्कट वाला बुज़ुर्ग व्यक्ति" width="230" height="230"><b>अलोइस</b><span>इतिहास, रास्ते और नज़ारे</span></div><div class="host"><img src="/assets/img/theresa.png" alt="थेरेसा, काल्पनिक मेज़बान: लाल पारंपरिक बोडिस में गुँथे सुनहरे बालों वाली महिला" width="230" height="230"><b>थेरेसा</b><span>बगीचे, भोजन और त्योहार</span></div></div>
+<div class="hosts"><div class="host"><img src="/assets/img/anton.png" alt="अलोइस, काल्पनिक मेज़बान: भूरी दाढ़ी, हरी टोपी और पारंपरिक वास्कट वाला बुज़ुर्ग व्यक्ति" width="230" height="230"><b>अलोइस</b><span>इतिहास, रास्ते और नज़ारे</span></div><div class="host"><img src="/assets/img/dora.png" alt="थेरेसा, काल्पनिक मेज़बान: लाल पारंपरिक बोडिस में गुँथे सुनहरे बालों वाली महिला" width="230" height="230"><b>थेरेसा</b><span>बगीचे, भोजन और त्योहार</span></div></div>
 </div></div></section>`;
 
 const HI_META = {
