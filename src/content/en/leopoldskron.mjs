@@ -4,7 +4,7 @@ export default {
   title: 'Leopoldskron: a Palace Seen Across the Water',
   short: 'Leopoldskron',
   kicker: 'Walk 4 · Flat, green, mostly quiet',
-  desc: 'A self-guided walk from Nonntal to the Leopoldskron pond, around the water with the palace and fortress in view, and out to the Moos meadows. The palace is private.',
+  desc: 'A self-guided walk from Nonntal to the Leopoldskron pond, along its public paths with the palace and fortress in view, and out to the Moos meadows. The palace is private.',
   hero: { file: 'leopoldskron/hero.jpg', alt: 'Leopoldskron Palace seen across the still water of the Leopoldskroner Weiher with Hohensalzburg Fortress on the hill behind' },
   facts: { duration: 'about 1.5–2 hours', length: 'about 4 km, flat, gravel and asphalt', start: 'Kajetanerplatz or Nonntal', cost: 'free · palace and park are private, exterior view only' },
   intro: `<p>Leopoldskron is a baroque palace on a pond at the southern edge of the city, built in 1736 by Prince-Archbishop Leopold Anton von Firmian as a residence for his family. Max Reinhardt, the theatre director, bought it in 1918, restored it over twenty years and made it a meeting place for artists; the Salzburg Festival was founded by him, Hugo von Hofmannsthal and Richard Strauss in those years. Today it is a hotel and seminar venue. The palace and its park are closed to the public, and this walk respects that.</p>
