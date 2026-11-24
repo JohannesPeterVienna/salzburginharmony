@@ -43,7 +43,7 @@ hosts/index.html -> /html/salzburg/hosts/index.html | ba8dfa995c5ef01b6cf57be49f
 imprint/index.html -> /html/salzburg/imprint/index.html | b696efbf172fc1f309c843b0890172bb32fef92283fec8399dbf444c0d65a57f | 11342
 index.html -> /html/salzburg/index.html | 69314355d4c23d61207c1b84d1673dc3117df6d8ba919c2c57fec2160d28ae0f | 16797
 planner/index.html -> /html/salzburg/planner/index.html | 1580140858b3b3d012aaf012ed41bfa3c740d04aa0d5456d3df01ef509162bfa | 15045
-privacy/index.html -> /html/salzburg/privacy/index.html | 3c3bb383e898f4764af786e39fb7f8677aaf65c58031e7ce23a1e572f0a985c4 | 15665
+privacy/index.html -> /html/salzburg/privacy/index.html | 2971d03b51b5e55f63c8dbecb54bd1e69fe95d97d38a95cad04624d87dc5f36f | 15703
 robots.txt -> /html/salzburg/robots.txt | 52165558569707ffa62d15f202bbdef70bde454159771ac19a312bbc6cdd8cdb | 79
 sitemap.xml -> /html/salzburg/sitemap.xml | 2df4bdb3325f4c2fe9bd6f565ee09aae13ee92c8724c5703807288e45a67b9ff | 6395
 tours/getreidegasse/index.html -> /html/salzburg/tours/getreidegasse/index.html | c74c62dcb9bc5293e003778c637f822a6abd2d3ddd78b1826b94801880565227 | 42224
