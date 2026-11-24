@@ -6,13 +6,13 @@ export default {
   kicker: 'Walk 7 · A day above the city',
   desc: 'A self-guided day on the Untersberg: bus to Grödig, cable car to 1,776 m, the summit walk to the Salzburger Hochthron, legends and marble, with 2026 hours and closures.',
   hero: { file: 'untersberg/hero.jpg', alt: 'Snow-covered Untersberg summit above the Salzburg basin on a clear winter day' },
-  facts: { duration: 'about 5 hours including travel', length: 'about 3 km of walking at the top, with roughly 100 m of climb; more if you extend', start: 'Grödig/St. Leonhard valley station (456 m), buses 25, 28 or trolleybus 5', cost: 'return ride adults € 34.00, children 6–14 € 13.00, 2026 prices · included in the Salzburg Card' },
+  facts: { duration: 'about 5 hours including travel', length: 'about 3 km of walking at the top, with roughly 100 m of climb; more if you extend', start: 'Grödig/St. Leonhard valley station (456 m), buses 25, 28 or trolleybus 5', cost: 'return ride adults € 34.00, seniors 65+ € 29.00; other fares on the operator’s price page · included in the Salzburg Card' },
   intro: `<p>The Untersberg is the mountain you have been looking at all week: the flat-topped massif that closes the view south from the fortress, from Nonnberg, from the Leopoldskron pond. It stands on the border between Austria and Bavaria, its highest point is in Germany, and its Austrian summit, the Salzburger Hochthron, is 1,853 metres high. A cable car from the village of Grödig carries you to 1,776 metres in eight and a half minutes, and from the top station a path along the ridge leads to the summit in about half an hour.</p>
 <p>This is the one walk in the series that leaves the city, and the one that needs the most checking before you go: the cable car has maintenance closures, the weather changes fast, and the top is high alpine terrain in every season. Anton knows the legends. Dora packs the rucksack.</p>`,
   before: `<ul>
 <li><b>Closures:</b> the cable car does not run from 2 November to 13 December 2026 (autumn maintenance) and from 30 March to 16 April 2027 (spring maintenance); dates subject to change (salzburg.info, status 10/2026, checked 24 November 2026: operations suspended since 2 November 2026).</li>
-<li><b>Operating hours 2026:</b> January–February 9 a.m.–4 p.m.; March and April (from 30 March) 8.30 a.m.–5 p.m.; May–September 8.30 a.m.–5.30 p.m.; October–1 November 8.30 a.m.–5 p.m.; from 14 December 9 a.m.–4 p.m.; 24 December 9 a.m.–12 p.m. Last ride up 30 minutes before closing; cars every hour and half hour, more when busy (salzburg.info, status 10/2026).</li>
-<li><b>Prices 2026, return:</b> adults € 34.00, seniors 65+ € 29.00, youth 14–18 and students € 18.00, children 6–14 € 13.00, under 6 free; one way adults € 22.00. The Salzburg Card includes one return ride and must still be active for the descent (salzburg.info, status 10/2026).</li>
+<li><b>Operating hours 2026:</b> January–February 9 a.m.–4 p.m.; 1 March, 30–31 March and April 8.30 a.m.–5 p.m.; May–September 8.30 a.m.–5.30 p.m.; October–1 November 8.30 a.m.–5 p.m.; from 14 December 9 a.m.–4 p.m.; 24 December 9 a.m.–12 p.m. Last ride up 30 minutes before closing; cars every hour and half hour, more when busy (salzburg.info, status 10/2026).</li>
+<li><b>Prices, return:</b> adults € 34.00, seniors 65+ € 29.00; one way adults € 22.00 (untersbergbahn.at and salzburg.info, both checked 24 November 2026). Fares for young people, students and children differ between the two sources, so we do not print them; check the <a href="https://www.untersbergbahn.at/infos/preise" rel="noopener">operator’s price page</a> before you go. The Salzburg Card includes one return ride and must still be active for the descent (salzburg.info, status 10/2026).</li>
 <li><b>Safety:</b> the top station is high alpine terrain. Good footwear, warm and wind-proof clothing, water and sun protection are needed in every season; snow can lie on the ridge into June. The operator's weather line is listed on salzburg.info. Do not leave the marked paths; the plateau has sinkholes and cliffs.</li>
 </ul>`,
   sketch: {
@@ -84,6 +84,7 @@ export default {
 <p>Add the stops to your <a href="/planner/">day planner</a>; count the travel time separately, which the planner does not do.</p>`,
   sources: [
     { label: 'Untersberg cable car – Salzburg Tourism (hours, prices 2026, maintenance closures, safety)', url: 'https://www.salzburg.info/en/sights/excursions/cable-car-untersberg', accessed: '24 November 2026' },
+    { label: 'Untersberg cable car – prices (operator)', url: 'https://www.untersbergbahn.at/infos/preise', accessed: '24 November 2026' },
     { label: 'Untersberg – Wikipedia (summits, geology, legends)', url: 'https://en.wikipedia.org/wiki/Untersberg' }
   ]
 };

@@ -64,7 +64,7 @@ ${LIVE.en_reach}
 <h2>Places that would like to be mentioned</h2>
 <p>We do not take payment for inclusion or for favourable descriptions, and we do not publish advertorials in the walks. Advertising on the site is delivered by Google AdSense and labelled as such.</p>
 <h2>Using our texts and images</h2>
-<p>The texts are copyright AdStern. Short quotations with a link are welcome; reprinting whole walks is not. Photographs carry their own licences, listed on the <a href="/about/#image-credits">About page</a>; the AI-generated host portraits may not be reused.</p>
+<p>The texts are copyright AdStern. Short quotations with a link are welcome; other commercial reuse of texts or of the host portraits needs our permission, as point 4 of the <a href="/imprint/#terms">terms of use</a> says. Photographs carry their own licences, listed on the <a href="/about/#image-credits">About page</a>.</p>
 <p>What happens to your message is described in the <a href="/privacy/">privacy policy</a>.</p>`;
 
 // ---------------- Deutsch ----------------
@@ -115,5 +115,5 @@ ${LIVE.de_reach}
 <h2>Orte, die erwähnt werden möchten</h2>
 <p>Wir nehmen kein Geld für Aufnahme oder wohlwollende Beschreibung und veröffentlichen keine Werbetexte in den Spaziergängen. Werbung auf der Website liefert Google AdSense und ist als solche gekennzeichnet.</p>
 <h2>Texte und Bilder verwenden</h2>
-<p>Die Texte sind urheberrechtlich geschützt (AdStern). Kurze Zitate mit Link sind willkommen; ganze Spaziergänge nachzudrucken nicht. Fotos tragen ihre eigenen Lizenzen, aufgelistet auf der Seite <a href="/de/ueber/#bildnachweise">Über die Website</a>; die KI-generierten Gastgeberporträts dürfen nicht weiterverwendet werden.</p>
+<p>Die Texte sind urheberrechtlich geschützt (AdStern). Kurze Zitate mit Link sind willkommen; eine darüber hinausgehende gewerbliche Weiterverwendung der Texte oder der Gastgeberporträts braucht unsere Erlaubnis, wie Punkt 4 der <a href="/de/impressum/#nutzungsbedingungen">Nutzungsbedingungen</a> sagt. Fotos tragen ihre eigenen Lizenzen, aufgelistet auf der Seite <a href="/de/ueber/#bildnachweise">Über die Website</a>.</p>
 <p>Was mit deiner Nachricht geschieht, steht in der <a href="/de/datenschutz/">Datenschutzerklärung</a>.</p>`;

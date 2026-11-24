@@ -11,6 +11,19 @@
 <IfModule mod_rewrite.c>
 RewriteEngine On
 
+# 0) Kanonische Adresse https://www.salzburginharmony.com/ (ersetzt die Host-Regeln aus /html/.htaccess, die durch
+#    "RewriteEngine On" in diesem Ordner nicht mehr greifen). traffic.php, traffic-config.php und traffic-data.php
+#    sind ausgenommen: Sie bedienen mehrere Domains und werden ggf. unter anderen Hosts aufgerufen
+#    (z. B. www.adstern.com/salzburg/traffic.php). HTTP gilt nur als unverschlüsselt, wenn weder %{HTTPS} noch ein
+#    vorgeschalteter Proxy (X-Forwarded-Proto) HTTPS meldet – so entsteht hinter einem TLS-Proxy keine Schleife.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+RewriteRule ^ - [E=SIH_PLAIN:1]
+RewriteCond %{REQUEST_URI} !(^|/)traffic(-config|-data)?\.php$
+RewriteCond %{ENV:SIH_PLAIN} =1 [OR]
+RewriteCond %{HTTP_HOST} !^www\.salzburginharmony\.com$ [NC]
+RewriteRule ^(.*)$ https://www.salzburginharmony.com/$1 [R=301,L]
+
 # 1) Alte Adressen der Vorschau-Seite -> neue Seiten (301; ein #Anker bleibt im Browser erhalten)
 RewriteRule ^en\.html$ /? [R=301,L]
 RewriteRule ^de\.html$ /de/? [R=301,L]

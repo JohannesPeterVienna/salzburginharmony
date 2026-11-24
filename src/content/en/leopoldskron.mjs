@@ -6,7 +6,7 @@ export default {
   kicker: 'Walk 4 · Flat, green, mostly quiet',
   desc: 'A self-guided walk from Nonntal to the Leopoldskron pond, along its public paths with the palace and fortress in view, and out to the Moos meadows. The palace is private.',
   hero: { file: 'leopoldskron/hero.jpg', alt: 'Leopoldskron Palace seen across the still water of the Leopoldskroner Weiher with Hohensalzburg Fortress on the hill behind' },
-  facts: { duration: 'about 1.5–2 hours', length: 'about 4 km, flat, gravel and asphalt', start: 'Kajetanerplatz or Nonntal', cost: 'free · palace and park are private, exterior view only' },
+  facts: { duration: 'about 2.5 hours', length: 'about 5–6 km, flat: roughly 2 km each way between Kajetanerplatz and the pond (20–25 minutes on foot), plus the shore paths and as far into the Moos as you like', start: 'Kajetanerplatz or Nonntal', cost: 'free · palace and park are private, exterior view only' },
   intro: `<p>Leopoldskron is a baroque palace on a pond at the southern edge of the city, built in 1736 by Prince-Archbishop Leopold Anton von Firmian as a residence for his family. Max Reinhardt, the theatre director, bought it in 1918, restored it over twenty years and made it a meeting place for artists; the Salzburg Festival was founded by him, Hugo von Hofmannsthal and Richard Strauss in those years. Today it is a hotel and seminar venue. The palace and its park are closed to the public, and this walk respects that.</p>
 <p>What you can have, freely, is the view: the palace reflected in the pond, with the fortress on its hill behind it, from a public path along the water. Dora likes this walk in the evening; Anton says the morning mist on the pond is the best thing Salzburg does for free.</p>`,
   before: `<ul>
@@ -15,10 +15,10 @@ export default {
 <li><b>Getting there:</b> on foot from the Old Town in about 20–25 minutes; use a city map or the signposts to Leopoldskron, as the route through the residential streets is not marked as a trail. City buses run to the area; check the Salzburg AG timetable for the current line and stop.</li>
 </ul>`,
   sketch: {
-    backdrop: '<ellipse class="s-water" cx="330" cy="190" rx="150" ry="70"/><path class="s-hill" d="M0 0 L140 0 Q 100 60 0 70 Z"/><rect class="s-green" x="480" y="200" width="120" height="100"/>',
+    backdrop: '<path class="s-hill" d="M600 0 L450 0 Q 500 60 600 75 Z"/><ellipse class="s-water" cx="300" cy="185" rx="140" ry="65"/><rect class="s-green" x="140" y="262" width="320" height="38"/>',
     points: [
-      { x: 80, y: 60, label: 'Kajetanerplatz', lx: 16 }, { x: 150, y: 130, label: 'Leopoldskronstraße', lx: 16, ly: -8 }, { x: 230, y: 150, label: 'Pond, first view', lx: -16, anchor: 'end', ly: 18 },
-      { x: 330, y: 118, label: 'Palace from outside', lx: 16, ly: -8 }, { x: 410, y: 250, label: 'Along the shore', lx: 16 }, { x: 520, y: 240, label: 'Moos meadows', lx: -16, anchor: 'end', ly: -10 }
+      { x: 540, y: 40, label: 'Out through Nonntal', lx: -16, anchor: 'end' }, { x: 420, y: 135, label: 'The pond', lx: 16 }, { x: 320, y: 112, label: 'Palace from outside', lx: -16, ly: -8, anchor: 'end' },
+      { x: 185, y: 225, label: 'Along the shore', lx: -16, anchor: 'end' }, { x: 300, y: 278, label: 'Moos meadows', lx: 16 }, { x: 575, y: 110, label: 'Back to town', lx: -16, anchor: 'end', ly: -12 }
     ]
   },
   stations: [
@@ -79,7 +79,7 @@ export default {
   ],
   after: `<h2>Practical notes</h2>
 <p><b>Accessibility:</b> this is the flattest walk in the series. The streets from the Old Town are asphalt and step-free; the shore paths are gravel and can be muddy after rain, which matters for wheelchairs and prams. There are no public toilets on the shore paths outside the pool's season; use a café in Nonntal before you set out.</p>
-<p>Allow ninety minutes to two hours.</p>
+<p>Allow about two and a half hours; the times at the stops add up to 140 minutes, including the walk out and back. Shorten it by turning back at the pond instead of going on into the Moos.</p>
 <p>Please remember that the palace is private. Guided city tours sometimes stop at the fence; follow the same rule they do and stay outside. Add the stops to your <a href="/planner/">day planner</a>.</p>`,
   sources: [
     { label: 'Leopoldskron Palace – Salzburg Tourism (not open to the public)', url: 'https://www.salzburg.info/en/sights/fortress-palaces/leopoldskron-palace' },

@@ -135,10 +135,12 @@ if (fs.readFileSync(path.join(DOCS, 'ads.txt'), 'utf8') !== 'google.com, pub-781
 const robots = fs.readFileSync(path.join(DOCS, 'robots.txt'), 'utf8');
 if (!robots.includes(`Sitemap: ${SITE}/sitemap.xml`)) problems.push('robots without sitemap');
 const ht = fs.readFileSync(path.join(DOCS, '.htaccess'), 'utf8');
-for (const line of ht.split('\n').filter((l) => /^\s*Rewrite(Rule|Cond)/.test(l))) if (/traffic|index\\?\.php/.test(line) && !/!\^\/\(index\\\.php\|traffic/.test(line)) problems.push('.htaccess touches index.php/traffic*.php: ' + line);
+for (const line of ht.split('\n').filter((l) => /^\s*Rewrite(Rule|Cond)/.test(l))) if (/traffic|index\\?\.php/.test(line) && !/^RewriteCond %\{REQUEST_URI\} !/.test(line) && !/!\^\/\(index\\\.php\|traffic/.test(line)) problems.push('.htaccess touches index.php/traffic*.php: ' + line);
+const CANON = ['RewriteCond %{REQUEST_URI} !(^|/)traffic(-config|-data)?\\.php$', 'RewriteCond %{ENV:SIH_PLAIN} =1 [OR]', 'RewriteCond %{HTTP_HOST} !^www\\.salzburginharmony\\.com$ [NC]', 'RewriteRule ^(.*)$ https://www.salzburginharmony.com/$1 [R=301,L]'].join('\n');
+if (!ht.includes(CANON)) problems.push('.htaccess: host/https canonical rule with traffic*.php exception missing');
 if (/^\s*(DirectoryIndex|RewriteOptions)/m.test(ht)) problems.push('.htaccess must not set DirectoryIndex or RewriteOptions');
 if (/Header[^\n]*\n?/.test(ht) && /<FilesMatch[^>]*php/.test(ht)) problems.push('.htaccess must not set headers for PHP');
-for (const m of ht.matchAll(/^RewriteRule \^([^ ]+) /gm)) for (const t of ['traffic.php', 'traffic-config.php', 'traffic-data.php', 'index.php']) if (new RegExp('^' + m[1]).test(t)) problems.push(`.htaccess rule ^${m[1]} matches ${t}`);
+for (const m of ht.replace(CANON, '').matchAll(/^RewriteRule \^([^ ]+) /gm)) for (const t of ['traffic.php', 'traffic-config.php', 'traffic-data.php', 'index.php']) if (new RegExp('^' + m[1]).test(t)) problems.push(`.htaccess rule ^${m[1]} matches ${t}`);
 const manifest = fs.readFileSync(path.join(ROOT, 'UPLOAD-MANIFEST.txt'), 'utf8');
 for (const u of files) { const f = (u.endsWith('/') ? u + 'index.html' : u).slice(1); if (!manifest.includes(`\n${f} -> /html/salzburg/${f} | `)) problems.push('manifest misses ' + f); }
 const tourCount = sitemap.filter((l) => /\/tours\/.+\/$/.test(l)).length;

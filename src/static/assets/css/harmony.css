@@ -230,6 +230,10 @@ table { border-collapse: collapse; width: 100%; font-size: .95rem; margin: 1em 0
 th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
 th { font-weight: 600; color: var(--ink-2); font-size: .85rem; text-transform: uppercase; letter-spacing: .06em; }
 .prose { max-width: 72ch; }
+.tlist { padding-left: 1.4em; margin: 1em 0 2em; }
+.tlist li { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.tlist a { font-family: var(--serif); font-size: 1.15rem; }
+.tlist .small { display: block; }
 .prose h2 { margin-top: 1.5em; }
 .two { display: grid; gap: 18px; }
 .quote { font-family: var(--serif); font-size: 1.25rem; color: var(--forest); border-left: 4px solid var(--gold); padding-left: 16px; margin: 1.4em 0; }

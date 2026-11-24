@@ -15,7 +15,7 @@ export const LEGACY = [
   { from: 'guide-zh.html', code: 301, to: '/tours/', why: 'as guide-en.html' },
   { from: 'guide-de.html', code: 301, to: '/de/touren/', why: 'German overview of the walks' },
   { from: 'werbung.html', code: 301, to: '/', why: 'advertising media page removed' },
-  { from: 'privacy.html', code: 301, to: '/privacy/', why: 'bilingual privacy page; anchors #google-analytics and #google-analytics-en exist on /privacy/ and /de/datenschutz/', anchors: [['#google-analytics', 'Analytics-Abschnitt']] },
+  { from: 'privacy.html', code: 301, to: '/privacy/', why: 'bilingual privacy page; the anchors #google-analytics and #google-analytics-en both exist on /privacy/ (German text: /de/datenschutz/#google-analytics)', anchors: [['#google-analytics', 'Analytics-Abschnitt']] },
   { from: 'datenschutz.html', code: 301, to: '/de/datenschutz/', why: 'German privacy policy' },
   { from: 'impressum.html', code: 301, to: '/imprint/', why: 'legal notice (German version: /de/impressum/)' },
   { from: 'imprint.html', code: 301, to: '/imprint/', why: 'legal notice' },
@@ -40,6 +40,19 @@ export const HTACCESS = `# ==== salzburginharmony.com – relaunch 2026-11-24 ==
 
 <IfModule mod_rewrite.c>
 RewriteEngine On
+
+# 0) Kanonische Adresse https://www.salzburginharmony.com/ (ersetzt die Host-Regeln aus /html/.htaccess, die durch
+#    "RewriteEngine On" in diesem Ordner nicht mehr greifen). traffic.php, traffic-config.php und traffic-data.php
+#    sind ausgenommen: Sie bedienen mehrere Domains und werden ggf. unter anderen Hosts aufgerufen
+#    (z. B. www.adstern.com/salzburg/traffic.php). HTTP gilt nur als unverschlüsselt, wenn weder %{HTTPS} noch ein
+#    vorgeschalteter Proxy (X-Forwarded-Proto) HTTPS meldet – so entsteht hinter einem TLS-Proxy keine Schleife.
+RewriteCond %{HTTPS} !=on
+RewriteCond %{HTTP:X-Forwarded-Proto} !^https$ [NC]
+RewriteRule ^ - [E=SIH_PLAIN:1]
+RewriteCond %{REQUEST_URI} !(^|/)traffic(-config|-data)?\\.php$
+RewriteCond %{ENV:SIH_PLAIN} =1 [OR]
+RewriteCond %{HTTP_HOST} !^www\\.salzburginharmony\\.com$ [NC]
+RewriteRule ^(.*)$ https://www.salzburginharmony.com/$1 [R=301,L]
 
 # 1) Alte Adressen der Vorschau-Seite -> neue Seiten (301; ein #Anker bleibt im Browser erhalten)
 ${redirects}

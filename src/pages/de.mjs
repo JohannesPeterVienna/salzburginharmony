@@ -20,7 +20,7 @@ const DE_META = {
   'mirabell-to-fortress': { kurz: 'Mirabell und Festung', titel: 'Von Schloss Mirabell zur Festung', dauer: '3–4 Std.', text: 'Die klassische Linie: Mirabellgarten, Salzach, Mozartplatz, Residenzplatz, Dom, Kapitelplatz und hinauf auf die Festung Hohensalzburg.' },
   hellbrunn: { kurz: 'Hellbrunn', titel: 'Hellbrunn: das Wasserschloss im Süden', dauer: '4 Std.', text: 'Hellbrunner Allee, Schloss, Wasserspiele, Park und der Hügel mit Steintheater und Monatsschlössl; Saison 28. März bis 1. November 2026.' },
   nonnberg: { kurz: 'Nonnberg', titel: 'Nonnberg: das älteste Kloster und der stille Hügel', dauer: '1,5 Std.', text: 'Über die Nonnbergstiege zum Stift Nonnberg (gegründet um 714), Kirche, Aussicht nach Süden und hinunter durch Nonntal.' },
-  leopoldskron: { kurz: 'Leopoldskron', titel: 'Leopoldskron: ein Schloss über das Wasser gesehen', dauer: '1,5–2 Std.', text: 'Flacher Weg von Nonntal zum Leopoldskroner Weiher, Schloss und Festung im Blick, hinaus ins Moos. Das Schloss selbst ist nicht öffentlich.' },
+  leopoldskron: { kurz: 'Leopoldskron', titel: 'Leopoldskron: ein Schloss über das Wasser gesehen', dauer: '2,5 Std.', text: 'Flacher Weg von Nonntal zum Leopoldskroner Weiher, Schloss und Festung im Blick, hinaus ins Moos. Das Schloss selbst ist nicht öffentlich.' },
   getreidegasse: { kurz: 'Getreidegasse', titel: 'Getreidegasse und die Gassen der Altstadt', dauer: '2–2,5 Std.', text: 'Alter Markt, Zunftzeichen, Mozarts Geburtshaus, Durchhäuser, Grünmarkt, Petersfriedhof und die Stiftsbäckerei am Wasserrad.' },
   kapuzinerberg: { kurz: 'Kapuzinerberg', titel: 'Kapuzinerberg: der grüne Hügel über dem Fluss', dauer: '2–2,5 Std.', text: 'Linzergasse, Kreuzweg, Kapuzinerkloster, Hettwer-Bastei, Basteiweg, Franziskischlössl und hinunter durch die Steingasse.' },
   untersberg: { kurz: 'Untersberg', titel: 'Untersberg: Salzburgs Berg mit der Seilbahn', dauer: '5 Std.', text: 'Bus nach Grödig, Seilbahn auf 1.776 m, Gipfelweg zum Salzburger Hochthron, Sagen und Marmor; mit Revisionszeiten 2026/27.' },
@@ -52,8 +52,8 @@ export const toursIndex = (tours, imgExists) => `
 <span class="kicker">Die Spaziergänge</span>
 <h1>Acht Spaziergänge durch Salzburg</h1>
 <p class="lede">In der Reihenfolge, die wir für einen ersten Besuch vorschlagen. Jeder ist in sich geschlossen; die praktischen Hinweise am Ende sagen, welche sich verbinden lassen. Zeiten sind großzügige Schätzungen für langsames Gehen mit Pausen, keine Fahrpläne.</p>
-<div class="note">Die Stationstexte der Spaziergänge sind auf Englisch geschrieben. Die Karten und Links führen zur englischen Seite des jeweiligen Spaziergangs.</div>
-<ul class="cards">${tours.map((t) => card(t, imgExists)).join('')}</ul>
+<div class="note">Die Stationstexte der Spaziergänge sind auf Englisch geschrieben. Die Links führen zur englischen Seite des jeweiligen Spaziergangs; kurze Beschreibungen stehen auf der <a href="/de/">Startseite</a>.</div>
+<ol class="tlist">${tours.map((t) => `<li><a href="/tours/${t.slug}/" hreflang="en">${DE_META[t.slug].titel}</a> <span class="muted small">${t.stations.length} Stationen · ${DE_META[t.slug].dauer}</span></li>`).join('')}</ol>
 <h2>Welcher zuerst?</h2>
 <table><thead><tr><th>Wenn du hast</th><th>Nimm</th><th>Warum</th></tr></thead><tbody>
 <tr><td>Einen Vormittag</td><td><a href="/tours/mirabell-to-fortress/">Mirabell bis zur Festung</a></td><td>Garten, Fluss, die drei Plätze und die Burg in der Reihenfolge, in der sie gesehen werden sollten.</td></tr>
