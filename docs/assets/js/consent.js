@@ -1,14 +1,14 @@
 /*
- * Salzburg in Harmony – consent decision rules without DOM (tested in tests/consent.test.js).
+ * Salzburg in Harmony – consent decision rules without DOM (tested in tests/consent.test.cjs).
  *
- * Who may switch what on:
- *  - Google's certified CMP (Privacy & messaging / Funding Choices) is the authority. A purpose becomes
- *    "granted" only when the TCF data says GDPR consent exists (purpose 1 + Google vendor 755, TC data loaded)
- *    AND Google's Consent Mode value for that purpose is GRANTED (1). Outside the GDPR (gdprApplies === false)
- *    GRANTED or NOT_APPLICABLE (3) counts, provided the U.S. state status is DOES_NOT_APPLY (1) or NOT_OPTED_OUT (2).
- *  - Everything missing, unknown, denied or failing stays "denied".
- *  - The site's own statistics window (Google Analytics only) may only speak while Google's CMP has not spoken.
- *    Its stored record is valid for 12 months, needs a sane time stamp and the right version.
+ * Advertising (Google AdSense): Google's certified CMP (Privacy & messaging / Funding Choices) is the authority.
+ *  An ad purpose becomes "granted" only when the TCF data says GDPR consent exists (purpose 1 + Google vendor 755,
+ *  TC data loaded) AND Google's Consent Mode value for that purpose is GRANTED (1). Outside the GDPR
+ *  (gdprApplies === false) GRANTED or NOT_APPLICABLE (3) counts, provided the U.S. state status is DOES_NOT_APPLY (1)
+ *  or NOT_OPTED_OUT (2). Everything missing, unknown, denied or failing stays "denied".
+ * Analytics (Google Analytics 4): decided only by the site's own analytics choice, as the privacy policy says
+ *  ("separate from advertising consent"): stored under tw-analytics-consent-v1 for at most 180 days, never on legal
+ *  pages, never with Global Privacy Control, Do Not Track or a U.S. state opt-out.
  * Enum values: developers.google.com/funding-choices/fc-api-docs
  */
 (function (root) {
@@ -27,7 +27,8 @@
     return loaded && purpose1 && google ? 'yes' : 'no';
   }
 
-  // the four Consent Mode purposes from TCF data, Consent Mode values and the initial U.S. status
+  // the three advertising purposes from TCF data, Consent Mode values and the initial U.S. status;
+  // analytics_storage is always "denied" here – the analytics choice is set separately (analyticsAllowed)
   function decide(tc, consentModeValues, usStatus) {
     var sig = gdprSignal(tc);
     if (sig === 'no' || !consentModeValues || typeof consentModeValues !== 'object') return denied();
@@ -37,53 +38,36 @@
       ad_storage: okValue(consentModeValues.adStoragePurposeConsentStatus) ? 'granted' : 'denied',
       ad_user_data: okValue(consentModeValues.adUserDataPurposeConsentStatus) ? 'granted' : 'denied',
       ad_personalization: okValue(consentModeValues.adPersonalizationPurposeConsentStatus) ? 'granted' : 'denied',
-      analytics_storage: okValue(consentModeValues.analyticsStoragePurposeConsentStatus) ? 'granted' : 'denied'
+      analytics_storage: 'denied'
     };
   }
 
-  /* --- statistics window: when may the site ask itself? --- */
-  var STATS = { KEY: 'sih-stats', VERSION: 1, WAIT_MS: 3000, MONTHS: 12 };
-  // Google recorded a real decision (user acted, or a stored non-empty TC string was loaded)
-  function cmpDecided(tc) {
-    if (!tc) return false;
-    if (tc.eventStatus === 'useractioncomplete') return true;
-    return tc.eventStatus === 'tcloaded' && typeof tc.tcString === 'string' && tc.tcString.length > 0;
-  }
   // Google's message is actually on screen (a "cmpuishown" with displayStatus hidden/disabled is not)
   function cmpShowing(tc) {
     if (!tc) return false;
     if (tc.displayStatus === 'visible') return true;
     return tc.eventStatus === 'cmpuishown' && tc.displayStatus !== 'hidden' && tc.displayStatus !== 'disabled';
   }
-  // from here on only Google counts
-  function cmpSpoke(tc) { return !!tc && (tc.gdprApplies === false || cmpDecided(tc) || cmpShowing(tc)); }
-  // Google clearly said no to analytics (purpose 1 / vendor missing after a decision, or Consent Mode analytics DENIED = 2)
-  function googleDeclinedAnalytics(tc, analyticsValue) {
-    if (!tc) return false;
-    if (tc.gdprApplies === false) return analyticsValue === 2;
-    if (!cmpDecided(tc)) return false;
-    var purpose1 = !!(tc.purpose && tc.purpose.consents && tc.purpose.consents[1] === true);
-    var google = !!(tc.vendor && tc.vendor.consents && tc.vendor.consents[GOOGLE_VENDOR] === true);
-    return !purpose1 || !google || analyticsValue === 2;
-  }
-  // stored record (string or object) → {v, choice, at} or null when invalid, future-dated or older than 12 months
-  function statsRecord(raw, now) {
+
+  /* --- analytics choice --- */
+  var ANALYTICS = { KEY: 'tw-analytics-consent-v1', VERSION: 1, DAYS: 180, WAIT_MS: 3000, COOKIE_PREFIX: 'twga' };
+  // stored record (string or object) → {granted, time} or null when invalid, future-dated or older than 180 days
+  function analyticsRecord(raw, now) {
     var rec = raw;
     if (typeof raw === 'string') { try { rec = JSON.parse(raw); } catch (e) { return null; } }
-    if (!rec || typeof rec !== 'object' || rec.v !== STATS.VERSION) return null;
-    if (rec.choice !== 'granted' && rec.choice !== 'denied') return null;
-    if (typeof rec.at !== 'number' || !isFinite(rec.at) || rec.at > now) return null;
-    var until = new Date(rec.at); until.setMonth(until.getMonth() + STATS.MONTHS);
-    return now < until.getTime() ? { v: rec.v, choice: rec.choice, at: rec.at } : null;
+    if (!rec || typeof rec !== 'object' || rec.version !== ANALYTICS.VERSION || typeof rec.granted !== 'boolean') return null;
+    if (typeof rec.time !== 'number' || !isFinite(rec.time) || rec.time > now) return null;
+    return now - rec.time < ANALYTICS.DAYS * 86400000 ? { granted: rec.granted, time: rec.time } : null;
   }
-  // statistics may run: window active, not blocked (GPC / U.S. opt-out), and the stored choice is "granted"
-  function statsAllowed(phase, blocked, record) {
-    return phase === 'active' && !blocked && !!record && record.choice === 'granted';
-  }
-  // _ga and _ga_<id> cookie names in a cookie string
+  function analyticsEntry(granted, now) { return { version: ANALYTICS.VERSION, time: now, granted: !!granted, ageConfirmed: null }; }
+  // browser signals that keep analytics off: Global Privacy Control, Do Not Track, U.S. state opt-out
+  function analyticsBlocked(gpc, dnt, usStatus) { return gpc === true || dnt === '1' || dnt === 'yes' || usStatus === US_OPTED_OUT; }
+  // analytics may run: not a legal page, not blocked, and the stored choice says granted
+  function analyticsAllowed(legalPage, blocked, record) { return !legalPage && !blocked && !!record && record.granted === true; }
+  // analytics cookies of this integration (twga…) and older default GA cookies (_ga, _ga_<id>) in a cookie string
   function gaCookieNames(jar) {
     return String(jar || '').split(';').map(function (c) { return c.split('=')[0].trim(); })
-      .filter(function (n) { return /^_ga(_[A-Za-z0-9]+)?$/.test(n); });
+      .filter(function (n) { return /^twga(?:_|$)/.test(n) || /^_ga(_[A-Za-z0-9]+)?$/.test(n); });
   }
   // every domain attribute a cookie for this host may carry
   function cookieDomains(host) {
@@ -91,11 +75,14 @@
     for (var i = 0; i < parts.length - 1; i++) { var d = parts.slice(i).join('.'); out.push(d, '.' + d); }
     return out;
   }
+  // page address for analytics without query string and fragment; referrer reduced to its origin
+  function cleanLocation(origin, pathname) { return String(origin || '') + String(pathname || '/'); }
+  function cleanReferrer(ref) { var m = /^(https?:\/\/[^/?#]+)/i.exec(String(ref || '')); return m ? m[1] + '/' : ''; }
 
   var api = { GRANTED: GRANTED, NOT_APPLICABLE: NOT_APPLICABLE, US_DOES_NOT_APPLY: US_DOES_NOT_APPLY, US_NOT_OPTED_OUT: US_NOT_OPTED_OUT,
-    US_OPTED_OUT: US_OPTED_OUT, ALL_DENIED: ALL_DENIED, denied: denied, gdprSignal: gdprSignal, decide: decide, STATS: STATS,
-    cmpDecided: cmpDecided, cmpShowing: cmpShowing, cmpSpoke: cmpSpoke, googleDeclinedAnalytics: googleDeclinedAnalytics,
-    statsRecord: statsRecord, statsAllowed: statsAllowed, gaCookieNames: gaCookieNames, cookieDomains: cookieDomains };
+    US_OPTED_OUT: US_OPTED_OUT, ALL_DENIED: ALL_DENIED, denied: denied, gdprSignal: gdprSignal, decide: decide, cmpShowing: cmpShowing,
+    ANALYTICS: ANALYTICS, analyticsRecord: analyticsRecord, analyticsEntry: analyticsEntry, analyticsBlocked: analyticsBlocked,
+    analyticsAllowed: analyticsAllowed, gaCookieNames: gaCookieNames, cookieDomains: cookieDomains, cleanLocation: cleanLocation, cleanReferrer: cleanReferrer };
   if (typeof module !== 'undefined' && module.exports) module.exports = api;
   else root.SIHConsent = api;
 })(this);

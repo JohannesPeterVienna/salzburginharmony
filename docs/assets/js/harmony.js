@@ -1,23 +1,25 @@
 /*
  * Salzburg in Harmony – page runtime.
- *  1. Ads: fixed boxes (.ad[data-slot]) get an AdSense <ins> only when a slot ID exists; label and frame appear
- *     only once Google reports data-ad-status "filled"/"unfill-optimized". The <ins> is never hidden.
- *  2. Consent: Google's CMP (Funding Choices, loaded with the AdSense script in the head) decides. Consent Mode
- *     defaults are "denied" (inline in the head, before any Google script). Google Analytics (G-T00HRG2YVF) loads
- *     only after a granted analytics signal – from Google's CMP or, while Google's message is not shown, from the
- *     site's own statistics window ("Allow"/"Decline" equal, "×"/Escape = no choice, 12 months, withdrawal in the footer).
- *     Google's CMP has priority: once it shows its message or reports a decision, the window closes and its stored
- *     choice is deleted. Pages marked html[data-google="off"] (imprint, privacy, contact, shop, 404) load no Google code;
- *     there "Privacy settings" opens the window only to view or change the choice.
- *  3. Tour mode: station by station with the chosen host (Anton/Dora), progress in localStorage "sih-tour-<slug>".
- *  4. Day planner: localStorage "sih-plan" via SIHPlanner; export as text, print.
+ *  1. Ads: the single box below the content (.ad[data-slot="bottom"]) gets an AdSense <ins> only when an ad-unit ID
+ *     exists; label and frame appear only once Google reports data-ad-status "filled"/"unfill-optimized".
+ *     The <ins> is never hidden.
+ *  2. Advertising consent: Google's CMP (Funding Choices, loaded with the AdSense script in the head of ad pages)
+ *     decides ad_storage / ad_user_data / ad_personalization. Consent Mode defaults are "denied" (inline in the head,
+ *     before any Google script). "Ad privacy choices (Google)" in the footer opens Google's revocation or U.S. dialog;
+ *     on pages without ads (html[data-google="off"]) it loads Google's consent script only on that click.
+ *  3. Analytics: separate from advertising, as the privacy policy says. Google Analytics 4 (G-T00HRG2YVF) loads only
+ *     after "Allow analytics" in the site's own window (stored 180 days under tw-analytics-consent-v1, cookies with
+ *     prefix twga, host-only, 180 days), never on legal pages, never with GPC / Do Not Track / U.S. opt-out.
+ *     Page address without query and fragment, referrer as origin only, no Google signals, no ad personalisation.
+ *  4. Tour mode: station by station with the chosen host (Anton/Dora), progress in localStorage "sih-tour-<slug>".
+ *  5. Day planner: localStorage "sih-plan" via SIHPlanner; export as text, print.
  */
 (function () {
   'use strict';
   var C = window.SIHConsent, P = window.SIHPlanner;
   var CLIENT = 'ca-pub-7811071715414905', GA_ID = 'G-T00HRG2YVF', GA_OFF = 'ga-disable-' + GA_ID;
-  // AdSense ad-unit IDs: empty until the site is approved and units exist (an empty ID renders nothing, reserves no space)
-  var SLOTS = { top: '', inline: '', side: '', bottom: '' };
+  // AdSense ad-unit ID for the box below the content: empty until a unit exists (an empty ID renders nothing)
+  var SLOTS = { bottom: '' };
   var html = document.documentElement;
   var adsOn = html.getAttribute('data-ads') === 'yes';
   var googleOff = html.getAttribute('data-google') === 'off';
@@ -25,8 +27,9 @@
   var UI = {};
   try { var uiEl = document.getElementById('sih-ui'); if (uiEl) UI = JSON.parse(uiEl.textContent) || {}; } catch (e) { UI = {}; }
   function t(key, fallback) { return typeof UI[key] === 'string' ? UI[key] : fallback; }
-  var gpc = false;
+  var gpc = false, dnt = null;
   try { gpc = navigator.globalPrivacyControl === true; } catch (e) { gpc = false; }
+  try { dnt = navigator.doNotTrack || window.doNotTrack || null; } catch (e) { dnt = null; }
   function store(key, value) { try { if (value === null) localStorage.removeItem(key); else localStorage.setItem(key, value); return true; } catch (e) { return false; } }
   function load(key) { try { return localStorage.getItem(key); } catch (e) { return null; } }
 
@@ -40,17 +43,16 @@
   }
   function placeAds() {
     if (!adsOn) return;
-    var wide = window.matchMedia('(min-width: 1200px)').matches;
     document.querySelectorAll('.ad[data-slot]').forEach(function (box) {
-      var name = box.getAttribute('data-slot'), id = SLOTS[name];
+      var id = SLOTS[box.getAttribute('data-slot')];
       if (!id) return;
-      if (name === 'side' && !wide) return;
       var ins = document.createElement('ins');
       ins.className = 'adsbygoogle';
       ins.style.display = 'block';
       ins.setAttribute('data-ad-client', CLIENT);
       ins.setAttribute('data-ad-slot', id);
-      if (name === 'side') { ins.setAttribute('data-ad-format', 'auto'); } else { ins.setAttribute('data-ad-format', 'auto'); ins.setAttribute('data-full-width-responsive', 'true'); }
+      ins.setAttribute('data-ad-format', 'auto');
+      ins.setAttribute('data-full-width-responsive', 'true');
       box.appendChild(ins);
       box.hidden = false;
       mirrorStatus(box, ins);
@@ -58,24 +60,30 @@
     });
   }
 
-  /* ---------------- consent + analytics ---------------- */
+  /* ---------------- consent: advertising (Google CMP) + analytics (own choice) ---------------- */
   var gtag = window.gtag || function () { (window.dataLayer = window.dataLayer || []).push(arguments); };
-  var state = { tc: null, cmReady: false, us: null, lastSent: '', gaLoaded: false, erased: false };
-  var stats = { phase: googleOff ? 'settings' : 'waiting', record: null, memo: undefined, timer: null };
+  var state = { tc: null, lastTc: null, cmReady: false, us: null, lastSent: '', gaLoaded: false, timer: null, pending: false };
+  function blocked() { return C.analyticsBlocked(gpc, dnt, state.us); }
+  function record() { return C.analyticsRecord(load(C.ANALYTICS.KEY), Date.now()); }
+  function analyticsOn() { return C.analyticsAllowed(googleOff, blocked(), record()); }
   function loadGA() {
     if (state.gaLoaded) return; state.gaLoaded = true;
+    var page = C.cleanLocation(location.origin, location.pathname), ref = C.cleanReferrer(document.referrer);
+    gtag('js', new Date());
+    gtag('config', GA_ID, { send_page_view: false, allow_google_signals: false, allow_ad_personalization_signals: false,
+      cookie_domain: 'none', cookie_prefix: C.ANALYTICS.COOKIE_PREFIX, cookie_expires: C.ANALYTICS.DAYS * 86400, cookie_update: false,
+      page_location: page, page_referrer: ref, page_title: document.title });
+    gtag('event', 'page_view', { send_to: GA_ID, page_location: page, page_referrer: ref, page_title: document.title });
     var s = document.createElement('script'); s.async = true;
     s.src = 'https://www.googletagmanager.com/gtag/js?id=' + GA_ID;
     document.head.appendChild(s);
-    gtag('js', new Date());
-    gtag('config', GA_ID, { allow_google_signals: false, allow_ad_personalization_signals: false });
   }
+  // general actions only (print / export requests), never the content of a plan
+  function track(name, params) { if (state.gaLoaded && window[GA_OFF] === false) gtag('event', name, params || {}); }
   function consentModeValues() {
     try { var fc = window.googlefc; return fc && typeof fc.getGoogleConsentModeValues === 'function' ? (fc.getGoogleConsentModeValues() || null) : null; } catch (e) { return null; }
   }
-  function statsBlocked() { return gpc || state.us === C.US_OPTED_OUT; }
   function eraseGaCookies() {
-    if (state.erased) return; state.erased = true;
     var host = ''; try { host = location.hostname; } catch (e) { host = ''; }
     C.gaCookieNames(document.cookie).forEach(function (n) {
       C.cookieDomains(host).forEach(function (d) {
@@ -90,47 +98,14 @@
     gtag('consent', 'update', update);
   }
   function apply() {
-    if (stats.phase === 'active' || stats.phase === 'settings') {   // the site's window decides analytics only
-      var ok = C.statsAllowed(stats.phase, statsBlocked(), stats.record);
-      window[GA_OFF] = !ok;
-      send({ analytics_storage: ok ? 'granted' : 'denied' });
-      if (ok) { loadGA(); state.erased = false; } else if (stats.record && stats.record.choice === 'denied') eraseGaCookies();
-      if (statsBlocked()) eraseGaCookies();
-      return;
-    }
     var cm = state.cmReady && C.gdprSignal(state.tc) !== 'no' ? consentModeValues() : null;
     var d = C.decide(state.tc, cm, state.us);
-    if (gpc || googleOff) d.analytics_storage = 'denied';
-    window[GA_OFF] = d.analytics_storage !== 'granted';
+    var on = analyticsOn();
+    d.analytics_storage = on ? 'granted' : 'denied';
+    window[GA_OFF] = !on;
     send(d);
-    if (d.analytics_storage === 'granted') { loadGA(); state.erased = false; }
-    else if (statsBlocked() || C.googleDeclinedAnalytics(state.tc, cm ? cm.analyticsStoragePurposeConsentStatus : undefined)) eraseGaCookies();
-  }
-  function statsRead() {
-    var raw = stats.memo === undefined ? load(C.STATS.KEY) : stats.memo;
-    return C.statsRecord(raw, Date.now());
-  }
-  function statsSave(choice) {
-    var rec = { v: C.STATS.VERSION, choice: choice, at: Date.now() };
-    stats.memo = JSON.stringify(rec); store(C.STATS.KEY, stats.memo);
-    stats.record = rec;
-  }
-  function statsForget() { stats.memo = null; stats.record = null; store(C.STATS.KEY, null); }
-  // Google's CMP has priority over the window
-  function seeTc(tc) {
-    if (!tc || (stats.phase === 'settings' && !state.googleAsked)) return;
-    if (tc.gdprApplies === false || C.cmpDecided(tc)) statsForget();
-    if (C.cmpSpoke(tc) && stats.phase !== 'retired') { stats.phase = 'retired'; stats.record = null; state.lastSent = ''; closeWindow(false); }
-  }
-  function startStats(byButton) {
-    if (stats.timer !== null) { clearTimeout(stats.timer); stats.timer = null; }
-    if (stats.phase !== 'waiting') return;
-    if (C.cmpSpoke(state.tc)) { seeTc(state.tc); apply(); return; }
-    stats.phase = 'active';
-    stats.record = statsRead();
-    state.lastSent = '';
-    apply();
-    if (!byButton && !stats.record && !statsBlocked()) openWindow(null);
+    if (on) loadGA();
+    else { var r = record(); if (blocked() || (r && !r.granted)) eraseGaCookies(); }
   }
   function watchCmp() {
     window.googlefc = window.googlefc || {};
@@ -140,9 +115,12 @@
         if (typeof window.__tcfapi !== 'function') return;
         window.__tcfapi('addEventListener', 2, function (tc, ok) {
           state.tc = ok ? tc : null;
-          if (ok && tc) { state.lastTc = tc; seeTc(tc); }
+          if (ok && tc) state.lastTc = tc;
           if (ok && tc && tc.eventStatus === 'useractioncomplete' && window.googlefc && typeof window.googlefc.getGoogleConsentModeValues === 'function') state.cmReady = true;
           apply();
+          // our analytics window waits while Google's message is on screen, and asks afterwards
+          if (ok && tc && state.pending && !C.cmpShowing(tc)) { state.pending = false; askAnalytics(); }
+          if (ok && tc && C.cmpShowing(tc) && win && !win.hidden && !opener) { closeWindow(false); state.pending = true; }
         });
       },
       CONSENT_MODE_DATA_READY: function () { state.cmReady = true; apply(); },
@@ -153,7 +131,7 @@
     });
     apply();
   }
-  // "Privacy settings": the window while it is in charge, otherwise Google's own message (EU) or U.S. dialog
+  // "Ad privacy choices (Google)": Google's revocation message (EU) or U.S. opt-out dialog
   function loadConsentScriptOnly() {
     if (document.querySelector('script[src*="fundingchoicesmessages.google.com"]') || document.querySelector('script[src*="adsbygoogle.js"]')) return;
     try {
@@ -165,7 +143,7 @@
   }
   function openGoogleChoices() {
     var before = { tc: state.tc, cmReady: state.cmReady };
-    state.tc = null; state.cmReady = false; apply();   // withdrawn at once until the CMP reports anew
+    state.tc = null; state.cmReady = false; apply();   // ad consent withdrawn at once until the CMP reports anew
     window.googlefc = window.googlefc || {};
     window.googlefc.callbackQueue = window.googlefc.callbackQueue || [];
     window.googlefc.callbackQueue.push(function () {
@@ -185,65 +163,46 @@
         fc.showRevocationMessage();
       } catch (e) { /* CMP not available */ }
     });
-    if (googleOff) state.googleAsked = true;
+    if (googleOff) watchCmp();
     loadConsentScriptOnly();
   }
-  function privacyButtons() {
-    document.querySelectorAll('[data-privacy-settings]').forEach(function (b) {
-      b.addEventListener('click', function () {
-        if (stats.phase === 'waiting') startStats(true);
-        if (stats.phase === 'active' || stats.phase === 'settings') { openWindow(b); return; }
-        openGoogleChoices();
-      });
-    });
-  }
 
-  /* ---------------- the statistics window ---------------- */
+  /* ---------------- the analytics window ---------------- */
   var win = null, live = null, opener = null;
   function announce(text) {
     if (!live) { live = document.createElement('p'); live.className = 'statlive'; live.setAttribute('role', 'status'); document.body.appendChild(live); }
     live.textContent = ''; setTimeout(function () { live.textContent = text; }, 120);
   }
-  function fmtDate(ms) { try { return new Date(ms).toLocaleDateString(lang === 'de' ? 'de-AT' : lang === 'hi' ? 'hi-IN' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' }); } catch (e) { return new Date(ms).toISOString().slice(0, 10); } }
   function buildWindow() {
     var el = document.createElement('section');
-    el.className = 'statwin'; el.id = 'sih-stats'; el.hidden = true;
-    el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'false'); el.setAttribute('aria-labelledby', 'sih-stats-h'); el.setAttribute('aria-describedby', 'sih-stats-p');
-    el.innerHTML = '<button type="button" class="x" data-w="close" aria-label="' + t('close_no_choice', 'Close without choosing') + '">×</button>' +
-      '<p class="kicker">' + t('stats_kicker', 'Statistics only') + '</p><h2 id="sih-stats-h" tabindex="-1"></h2><div id="sih-stats-p"></div><p class="now" data-now></p>' +
-      '<div class="picks" data-picks><button type="button" class="btn" data-w="granted">' + t('allow', 'Allow') + '</button><button type="button" class="btn ghost" data-w="denied">' + t('decline', 'Decline') + '</button></div>' +
-      '<div class="picks" data-ok hidden><button type="button" class="btn ghost" data-w="close">' + t('close', 'Close') + '</button></div>' +
-      '<p class="small" data-google hidden><button type="button" class="linklike" data-w="google">' + t('google_choices', 'Open Google’s ad and U.S. privacy choices') + '</button></p>';
+    el.className = 'statwin'; el.id = 'sih-analytics'; el.hidden = true;
+    el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'false'); el.setAttribute('aria-labelledby', 'sih-a-h'); el.setAttribute('aria-describedby', 'sih-a-p');
+    el.innerHTML = '<button type="button" class="x" data-w="close" aria-label="' + t('a_close', 'Close without choosing') + '">×</button>' +
+      '<h2 id="sih-a-h" tabindex="-1">' + t('a_title', 'Help us improve this website?') + '</h2><p id="sih-a-p"></p>' +
+      '<p><a href="' + t('privacy_url', '/privacy/') + '#google-analytics">' + t('a_privacy', 'Privacy details') + '</a></p><p class="now" role="status" data-now></p>' +
+      '<div class="picks" data-picks><button type="button" class="btn" data-w="yes">' + t('a_yes', 'Allow analytics') + '</button><button type="button" class="btn ghost" data-w="no">' + t('a_no', 'Without analytics') + '</button></div>' +
+      '<div class="picks" data-ok hidden><button type="button" class="btn ghost" data-w="close">' + t('close', 'Close') + '</button></div>';
     el.addEventListener('click', function (e) {
       var b = e.target && e.target.closest ? e.target.closest('[data-w]') : null; if (!b) return;
       var w = b.getAttribute('data-w');
-      if (w === 'granted' || w === 'denied') { statsSave(w); state.lastSent = ''; apply(); announce(w === 'granted' ? t('saved_allow', 'Statistics allowed.') : t('saved_decline', 'Statistics declined.')); closeWindow(true); }
-      else if (w === 'google') { var o = opener; closeWindow(false); openGoogleChoices(); if (o && o.focus) o.focus(); }
-      else closeWindow(true);
+      if (w === 'yes' || w === 'no') {
+        store(C.ANALYTICS.KEY, JSON.stringify(C.analyticsEntry(w === 'yes', Date.now())));
+        apply();
+        announce(w === 'yes' ? t('a_saved_yes', 'Analytics allowed.') : t('a_saved_no', 'Analytics switched off.'));
+        closeWindow(true);
+      } else closeWindow(true);
     });
     el.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.preventDefault(); closeWindow(true); } });
     document.body.appendChild(el);
     win = el;
   }
   function fillWindow() {
-    var h = win.querySelector('#sih-stats-h'), p = win.querySelector('#sih-stats-p'), now = win.querySelector('[data-now]');
-    var blocked = statsBlocked(), rec = statsRead();
-    var link = ' <a href="' + t('privacy_url', '/privacy/') + '#statistics">' + t('privacy', 'Privacy policy') + '</a>';
-    if (blocked) {
-      h.textContent = t('stats_off_title', 'Statistics stay off');
-      p.innerHTML = '<p>' + (gpc ? t('gpc_text', 'Your browser sends a Global Privacy Control signal, so Google Analytics stays off on this site and we do not ask.') : t('us_optout_text', 'You have opted out under a U.S. state privacy law, so Google Analytics stays off on this site.')) + link + '</p>';
-      now.textContent = '';
-    } else {
-      h.textContent = t('stats_title', 'Allow visitor statistics?');
-      p.innerHTML = '<p>' + t('stats_text', 'If you allow it, Google Analytics (Google Ireland Ltd.) counts page views and which walks are used, and sets cookies on your device; data may be processed in the USA. Statistics only – this is not consent to advertising. No choice means no statistics. Saved in this browser for 12 months; change it any time under “Privacy settings”.') + link + '</p>';
-      var line = rec ? t('current_choice', 'Your current choice:') + ' ' + (rec.choice === 'granted' ? t('allowed', 'allowed') : t('declined', 'declined')) + ' (' + fmtDate(rec.at) + ')' : (opener ? t('no_choice_yet', 'No choice saved in this browser yet.') : '');
-      if (stats.phase === 'settings') line += (line ? ' ' : '') + t('settings_note', 'Nothing is measured on this page. To withdraw consent to ads or to opt out under U.S. state law, use the link below; it loads Google’s consent script only then.');
-      now.textContent = line;
-    }
+    var p = win.querySelector('#sih-a-p'), now = win.querySelector('[data-now]'), r = record(), b = blocked();
+    p.textContent = t('a_text', '');
+    now.textContent = b ? t('a_blocked', '') : googleOff ? t('a_legal', '') : r ? (r.granted ? t('a_on', '') : t('a_off', '')) : (opener ? t('a_none', '') : '');
     now.hidden = !now.textContent;
-    win.querySelector('[data-picks]').hidden = blocked;
-    win.querySelector('[data-ok]').hidden = !blocked;
-    win.querySelector('[data-google]').hidden = !opener;
+    win.querySelector('[data-picks]').hidden = b;
+    win.querySelector('[data-ok]').hidden = !b;
   }
   function openWindow(by) {
     if (!document.body) return;
@@ -252,13 +211,27 @@
     fillWindow();
     win.hidden = false;
     document.body.style.paddingBottom = Math.ceil(win.getBoundingClientRect().height) + 20 + 'px';
-    if (opener) win.querySelector('#sih-stats-h').focus({ preventScroll: true });
+    if (opener) win.querySelector('#sih-a-h').focus({ preventScroll: true });
   }
   function closeWindow(byUser) {
     if (!win || win.hidden) return;
     win.hidden = true; document.body.style.paddingBottom = '';
     if (byUser && opener && opener.focus) { try { opener.focus(); } catch (e) { /* ignore */ } }
     opener = null;
+  }
+  // ask by itself only on content pages, without a stored choice, without a blocking signal, and not while
+  // Google's own consent message is on screen
+  function askAnalytics() {
+    if (googleOff || record() || blocked()) return;
+    if (state.tc && C.cmpShowing(state.tc)) { state.pending = true; return; }
+    openWindow(null);
+  }
+  function settingsButtons() {
+    document.querySelectorAll('[data-analytics-settings]').forEach(function (b) { b.addEventListener('click', function () { openWindow(b); }); });
+    document.querySelectorAll('[data-privacy-settings]').forEach(function (b) { b.addEventListener('click', function () { openGoogleChoices(); }); });
+    function fromHash() { if (location.hash === '#analytics-settings') openWindow(document.querySelector('[data-analytics-settings]')); }
+    window.addEventListener('hashchange', fromHash);
+    fromHash();
   }
 
   /* ---------------- host choice ---------------- */
@@ -302,8 +275,8 @@
       }
       panel.innerHTML = h;
       markList();
-      var el = document.getElementById('station-' + (idx + 1));
-      if (el && !done) { try { el.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch (e) { el.scrollIntoView(); } }
+      // the panel holds the whole stop; it is not sticky, so nothing floats over the page or the ad below
+      try { panel.scrollIntoView({ block: 'start', behavior: 'smooth' }); } catch (e) { panel.scrollIntoView(); }
       panel.querySelector('h2').focus({ preventScroll: true });
     }
     panel.addEventListener('click', function (e) {
@@ -312,7 +285,7 @@
       if (w === 'next') { if (idx < stations.length - 1) { idx++; save(false); render(); } else { save(true); render(true); } }
       else if (w === 'prev') { if (idx > 0) { idx--; save(false); render(); } }
       else if (w === 'restart') { idx = 0; save(false); render(); }
-      else if (w === 'print') { try { window.print(); } catch (e2) { /* ignore */ } }
+      else if (w === 'print') { track('print_request', { context: 'walk' }); try { window.print(); } catch (e2) { /* ignore */ } }
       else if (w === 'close') { on = false; panel.classList.remove('on'); panel.innerHTML = ''; markList(); startBtn.textContent = t('resume', 'Continue the walk at stop ') + (idx + 1); startBtn.focus(); }
     });
     startBtn.addEventListener('click', function () {
@@ -385,18 +358,19 @@
     });
     if (bufferIn) { bufferIn.value = plan.buffer; bufferIn.addEventListener('change', function () { plan.buffer = P.clampBuffer(bufferIn.value); bufferIn.value = plan.buffer; persist(); renderOut(); }); }
     if (startIn) { startIn.value = plan.start; startIn.addEventListener('change', function () { plan.start = /^\d{2}:\d{2}$/.test(startIn.value) ? startIn.value : ''; persist(); renderOut(); }); }
-    root.querAll = null;
     var copyBtn = root.querySelector('[data-plan-copy]'), dlBtn = root.querySelector('[data-plan-download]'), printBtn = root.querySelector('[data-plan-print]'), clearBtn = root.querySelector('[data-plan-clear]');
     if (copyBtn) copyBtn.addEventListener('click', function () {
+      track('plan_export', { method: 'copy' });
       var txt = P.asText(plan, catalog, labels);
       if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function () { announce(t('copied', 'Plan copied.')); copyBtn.textContent = t('copied', 'Plan copied.'); }, function () { window.prompt(t('copy_manual', 'Copy your plan:'), txt); });
       else window.prompt(t('copy_manual', 'Copy your plan:'), txt);
     });
     if (dlBtn) dlBtn.addEventListener('click', function () {
+      track('plan_export', { method: 'download' });
       var blob = new Blob([P.asText(plan, catalog, labels)], { type: 'text/plain;charset=utf-8' }), a = document.createElement('a');
       a.href = URL.createObjectURL(blob); a.download = 'salzburg-day-plan.txt'; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500);
     });
-    if (printBtn) printBtn.addEventListener('click', function () { try { window.print(); } catch (e) { /* ignore */ } });
+    if (printBtn) printBtn.addEventListener('click', function () { track('print_request', { context: 'planner' }); try { window.print(); } catch (e) { /* ignore */ } });
     if (clearBtn) clearBtn.addEventListener('click', function () { plan = P.readPlan(null, catalog); persist(); render(); announce(t('cleared', 'Plan cleared.')); });
     render();
   }
@@ -404,9 +378,10 @@
   /* ---------------- start ---------------- */
   function start() {
     placeAds();
-    privacyButtons();
-    if (!googleOff) { watchCmp(); stats.timer = setTimeout(function () { startStats(false); }, C.STATS.WAIT_MS); }
+    settingsButtons();
+    if (!googleOff) { watchCmp(); state.timer = setTimeout(askAnalytics, C.ANALYTICS.WAIT_MS); }
     else apply();
+    document.querySelectorAll('[data-print]').forEach(function (b) { b.addEventListener('click', function () { track('print_request', { context: 'walk' }); try { window.print(); } catch (e) { /* ignore */ } }); });
     tourMode();
     planner();
     var y = document.getElementById('year'); if (y) y.textContent = String(new Date().getFullYear());

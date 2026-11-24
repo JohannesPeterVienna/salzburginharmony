@@ -1,6 +1,8 @@
-// Browser checks with Playwright on every page (sitemap + hidden pages) at 390 and 1366 px:
-// no JS errors, no horizontal overflow, no local 404s, walk mode and planner work, and every ad box –
-// forced visible as if filled – is at least 150 px from any button, input, select, textarea or summary.
+// Browser checks with Playwright on every page (sitemap + 404) at 390 and 1366 px:
+// no JS errors, no horizontal overflow, no local 404s, the analytics window (asks by itself only on content pages,
+// × stores nothing, "Without analytics" stores false, "Allow analytics" loads GA once with analytics_storage granted and
+// ad purposes denied, withdrawal switches it off), the footer block id="imprint", walk mode and planner, and the ad
+// box – forced visible as if filled – at least 150 px from any button, input, select, textarea or summary.
 // Usage: node tests/browser.mjs   (PLAYWRIGHT=/path/to/playwright to point at a module outside the repo)
 import http from 'node:http';
 import fs from 'node:fs';
@@ -21,7 +23,7 @@ const srv = http.createServer((q, s) => {
   s.writeHead(200, { 'content-type': TYPES[path.extname(f)] || 'application/octet-stream' }); s.end(fs.readFileSync(f));
 }).listen(0);
 const base = `http://127.0.0.1:${srv.address().port}`;
-const urls = [...fs.readFileSync('docs/sitemap.xml', 'utf8').matchAll(/<loc>https:\/\/www\.salzburginharmony\.com([^<]*)<\/loc>/g)].map((m) => m[1]).concat(['/shop/', '/hi/', '/hi/tours/mirabell-to-fortress/', '/404.html']);
+const urls = [...fs.readFileSync('docs/sitemap.xml', 'utf8').matchAll(/<loc>https:\/\/www\.salzburginharmony\.com([^<]*)<\/loc>/g)].map((m) => m[1]).concat(['/404.html']);
 const browser = await chromium.launch();
 let fails = 0;
 const bad = (u, w, m) => { fails++; console.log(`FAIL ${u} @${w}: ${m}`); };
@@ -38,7 +40,7 @@ for (const width of [390, 1366]) {
     await page.waitForTimeout(3500);   // past the statistics window delay
     const info = await page.evaluate(() => ({
       overflow: document.documentElement.scrollWidth - window.innerWidth,
-      statwin: !!document.querySelector('#sih-stats:not([hidden])'),
+      statwin: !!document.querySelector('#sih-analytics:not([hidden])'), imprintBlock: !!document.querySelector('footer #imprint a[href*="contact-form"]'),
       googleOff: document.documentElement.getAttribute('data-google') === 'off',
       gaLoaded: !!document.querySelector('script[src*="googletagmanager"]'),
       // no ad box may show label/frame while nothing is filled
@@ -49,27 +51,37 @@ for (const width of [390, 1366]) {
     if (info.liveAds) bad(u, width, `${info.liveAds} ad box(es) show label/frame without a filled ad`);
     if (info.hiddenIns) bad(u, width, 'an <ins> is hidden');
     if (info.gaLoaded) bad(u, width, 'GA loaded without a click');
-    if (info.googleOff && info.statwin) bad(u, width, 'statistics window opened by itself on a page without Google code');
-    if (!info.googleOff && !info.statwin) bad(u, width, 'statistics window did not appear after 3 s (no CMP in tests)');
-    // the window: × stores nothing; Decline stores denied; Allow loads GA once; withdrawal removes it again
+    if (!info.imprintBlock) bad(u, width, 'footer block id="imprint" with contact form link missing');
+    if (info.googleOff && info.statwin) bad(u, width, 'analytics window opened by itself on a legal page');
+    if (!info.googleOff && !info.statwin) bad(u, width, 'analytics window did not appear after 3 s (no CMP in tests)');
+    // the window: × stores nothing; "Without analytics" stores false; "Allow analytics" loads GA once; withdrawal switches it off
+    const KEY = 'tw-analytics-consent-v1';
     if (!info.googleOff) {
-      await page.click('#sih-stats [data-w="close"]');
-      let st = await page.evaluate(() => ({ stored: localStorage.getItem('sih-stats'), open: !!document.querySelector('#sih-stats:not([hidden])') }));
+      await page.click('#sih-analytics [data-w="close"]');
+      let st = await page.evaluate((k) => ({ stored: localStorage.getItem(k), open: !!document.querySelector('#sih-analytics:not([hidden])') }), KEY);
       if (st.stored !== null || st.open) bad(u, width, '× must close without storing');
-      await page.click('footer [data-privacy-settings]');
-      await page.click('#sih-stats [data-w="denied"]');
-      st = await page.evaluate(() => JSON.parse(localStorage.getItem('sih-stats') || 'null'));
-      if (!st || st.choice !== 'denied') bad(u, width, 'Decline not stored');
-      if (u === '/') {   // once: Allow loads GA; withdrawal via the footer removes consent again
-        await page.click('footer [data-privacy-settings]');
-        await page.click('#sih-stats [data-w="granted"]');
-        const ga = await page.evaluate(() => ({ ga: !!document.querySelector('script[src*="googletagmanager.com/gtag/js?id=G-T00HRG2YVF"]'), off: window['ga-disable-G-T00HRG2YVF'], last: (window.dataLayer || []).filter((a) => a[0] === 'consent' && a[1] === 'update').pop() }));
-        if (!ga.ga || ga.off !== false || !ga.last || ga.last[2].analytics_storage !== 'granted' || ga.last[2].ad_storage !== undefined) bad(u, width, 'Allow must load GA with analytics_storage granted only: ' + JSON.stringify(ga));
-        await page.click('footer [data-privacy-settings]');
-        await page.click('#sih-stats [data-w="denied"]');
+      await page.click('footer [data-analytics-settings]');
+      await page.click('#sih-analytics [data-w="no"]');
+      st = await page.evaluate((k) => JSON.parse(localStorage.getItem(k) || 'null'), KEY);
+      if (!st || st.granted !== false || st.version !== 1) bad(u, width, '"Without analytics" not stored');
+      if (u === '/' || u === '/tours/hellbrunn/') {
+        await page.click('footer [data-analytics-settings]');
+        await page.click('#sih-analytics [data-w="yes"]');
+        const ga = await page.evaluate(() => ({ ga: document.querySelectorAll('script[src*="googletagmanager.com/gtag/js?id=G-T00HRG2YVF"]').length, off: window['ga-disable-G-T00HRG2YVF'], cfg: (window.dataLayer || []).filter((a) => a[0] === 'config').pop(), last: (window.dataLayer || []).filter((a) => a[0] === 'consent' && a[1] === 'update').pop() }));
+        if (ga.ga !== 1 || ga.off !== false || !ga.last || ga.last[2].analytics_storage !== 'granted' || ga.last[2].ad_storage !== 'denied' || ga.last[2].ad_personalization !== 'denied') bad(u, width, 'Allow must load GA once with analytics granted and ads denied: ' + JSON.stringify(ga));
+        if (!ga.cfg || ga.cfg[2].cookie_prefix !== 'twga' || ga.cfg[2].cookie_expires !== 180 * 86400 || ga.cfg[2].allow_google_signals !== false || /[?#]/.test(ga.cfg[2].page_location)) bad(u, width, 'GA config does not match the privacy policy: ' + JSON.stringify(ga.cfg));
+        await page.click('footer [data-analytics-settings]');
+        await page.click('#sih-analytics [data-w="no"]');
         const after = await page.evaluate(() => ({ off: window['ga-disable-G-T00HRG2YVF'], last: (window.dataLayer || []).filter((a) => a[0] === 'consent' && a[1] === 'update').pop() }));
         if (after.off !== true || after.last[2].analytics_storage !== 'denied') bad(u, width, 'withdrawal must disable GA');
       }
+      await page.evaluate(() => localStorage.clear());
+    } else {
+      // legal pages: the window opens only on request and never loads GA, even after "Allow analytics"
+      await page.click('footer [data-analytics-settings]');
+      await page.click('#sih-analytics [data-w="yes"]');
+      const ga = await page.evaluate(() => ({ ga: !!document.querySelector('script[src*="googletagmanager"]'), off: window['ga-disable-G-T00HRG2YVF'] }));
+      if (ga.ga || ga.off !== true) bad(u, width, 'GA must never load on a legal page');
       await page.evaluate(() => localStorage.clear());
     }
     // walk mode on tour pages: start, next ×2, reload keeps progress

@@ -26,10 +26,10 @@ export default {
     {
       id: 'nb-kaigasse', title: 'Kaigasse: leaving the squares behind', where: 'From Mozartplatz east along Kaigasse', minutes: 10,
       img: { file: 'nonnberg/01-kaigasse.jpg', alt: 'Narrow Kaigasse in Salzburg Old Town with pastel house fronts and the fortress hill above' },
-      body: `<p>Start at the corner of Mozartplatz and walk east into Kaigasse. Within fifty metres the crowds thin out. The street is older than the squares behind you; it runs along the foot of the hill and the houses are tall, narrow and plain, the way Salzburg looked before the archbishops went baroque. The university's law faculty has its home here, so during the week there are students rather than tour groups.</p>
+      body: `<p>Start at the corner of Mozartplatz and walk east into Kaigasse. Within fifty metres the crowds thin out. The street is older than the squares behind you; it runs along the foot of the hill and the houses are tall, narrow and plain, the way Salzburg looked before the archbishops went baroque. On weekday mornings you meet people on their way to work rather than tour groups.</p>
 <p>Keep the hill on your right and look for the signposted turn to Nonnberg. The lane bends uphill and ends at the foot of a long flight of stone steps. This is the Nonnbergstiege. Before you climb, look back down Kaigasse: the view of the Old Town roofs from here is the one the nuns have had for twelve centuries, minus the cars.</p>`,
       anton: 'The hill you are about to climb has had a convent on it for longer than Austria has had a name. Everything in the squares behind you is young by comparison.',
-      dora: 'There is a bakery and a small grocer on the way; take water. The steps are not long, but on a summer afternoon they are in full sun.',
+      dora: 'Take water. The steps are not long, but on a summer afternoon they are in full sun, and there is nothing to buy on the hill.',
       task: 'Walk fifty paces into Kaigasse and stop. Compare the house fronts here with the Residence you passed a minute ago. What did the people who built these houses have less of, and what did they have more of?'
     },
     {
@@ -44,10 +44,10 @@ export default {
     {
       id: 'nb-church', title: 'The abbey church', where: 'Nonnberg collegiate church, nave, crypt and the "Paradise"', minutes: 25,
       img: { file: 'nonnberg/03-church.jpg', alt: 'Late Gothic interior of Nonnberg Abbey church with the carved winged altar' },
-      body: `<p>The present church is late Gothic, but the site is far older. Around the turn of the first millennium Emperor Henry II paid for a Romanesque basilica here, consecrated in 1009, and after a fire the church was rebuilt in the 15th century in the form you see. Its first abbess was Erentrudis, who has been honoured as the mother of Salzburg since 1624; her tomb is in the crypt, a room of free-standing columns under a net vault that has no equal in the city.</p>
-<p>Two things are worth the climb alone. The late Gothic winged altar at the east end, with a figure of Mary at its centre, and the wall paintings from the middle of the 12th century in the so-called Paradise under the nuns' choir, among the oldest in Austria. Both can be illuminated with a coin or a switch near the entrance. The nuns' choir itself is behind a screen; the morning chant and the evening Vespers are sung there.</p>`,
-      anton: 'Twelfth-century paintings, a tenth-century crypt, an eighth-century foundation. Take them in that order, going back in time as you move towards the altar. Few churches let you do that.',
-      dora: 'Put a coin in the light box for the Paradise frescoes and wait for your eyes to adjust. Then sit for one minute. If a nun comes in to pray, that is her church, not your photo.',
+      body: `<p>The present church is late Gothic, but the site is far older. Around the turn of the first millennium Emperor Henry II paid for a Romanesque basilica here, consecrated in 1009, and after a fire the church was rebuilt in the 15th century in the form you see. Its first abbess was Erentrudis, a relative of Saint Rupert; her tomb is in the crypt below the choir, a room of free-standing columns under a late Gothic vault.</p>
+<p>Two things are worth the climb alone. The late Gothic winged altar at the east end, with a figure of Mary at its centre, and the wall paintings from the middle of the 12th century in the so-called Paradise under the nuns' choir, among the oldest in Austria. Give your eyes a minute in the half-light before you look for the details. The nuns' choir itself is behind a screen; the morning chant and the evening Vespers are sung there.</p>`,
+      anton: 'Twelfth-century paintings, a crypt with the tomb of the first abbess, an eighth-century foundation. Take them in that order and you go back in time as you go deeper. Few churches let you do that.',
+      dora: 'Sit down at the back for one minute before you look at anything. If a nun comes in to pray, that is her church, not your photo.',
       task: 'Find the oldest thing in the church you can date with confidence, and the newest. Then look for one object whose age you cannot guess at all. Which of the three held your attention longest?'
     },
     {
@@ -79,6 +79,7 @@ export default {
     }
   ],
   after: `<h2>Practical notes</h2>
+<p><b>Accessibility:</b> the Nonnbergstiege is a long flight of stone steps and the lane down to Nonntal is steep and narrow, with steps in places; the abbey cannot be reached step-free, and the church and crypt have thresholds and steps. Wheelchair users and families with prams can see the Kaigasse and Kajetanerplatz stops on the flat, but not the hill.</p>
 <p>Allow ninety minutes at a slow pace, more if you stay for the sung Vespers. Go in the morning for the sharpest view south, or at about 4.30 p.m. to be in the church before Vespers begins. The whole route involves steps or steep lanes; the abbey is not reachable step-free. The church is unheated; in winter dress as if you were outside.</p>
 <p>This walk combines naturally with the <a href="/tours/leopoldskron/">Leopoldskron pond walk</a>, which starts where this one ends, or with the fortress. Add its stops to your <a href="/planner/">day planner</a>.</p>`,
   sources: [

@@ -26,7 +26,7 @@ export default {
   stations: [
     {
       id: 'mf-palace', title: 'Mirabell Palace and the angel staircase', where: 'Mirabellplatz · entrance from the garden side', minutes: 25,
-      img: { file: 'mirabell-to-fortress/01-palace.jpg', alt: 'White marble balustrade of the angel staircase in Mirabell Palace with small putti figures' },
+      img: { file: 'mirabell-to-fortress/01-palace.jpg', alt: 'Mirabell Palace, a long cream-coloured baroque building, seen from the garden with red flower beds and clipped topiary in front' },
       body: `<p>The palace began in 1606 as a residence that Prince-Archbishop Wolf Dietrich von Raitenau built for Salome Alt and their children, outside the city walls of the time. His successor renamed it Mirabell, and after a fire and several rebuilds it became the baroque complex you see today. Most of the building is now the city's administration, including the mayor's office, so only two parts are open: the staircase and, at set times, the Marble Hall.</p>
 <p>The staircase is worth the detour even if the hall is closed. Georg Raphael Donner designed the marble balustrade with its crowd of putti; look at how the figures lean, climb and ignore the visitors. The Marble Hall above was once the archbishop's banqueting room; today it is a wedding and concert venue, and the Mozart family performed here in the 18th century.</p>`,
       anton: 'Wolf Dietrich built this for a family he was never allowed to marry into. Most of the baroque Salzburg you will see today was ordered by men like him. Keep that in mind on the squares.',
@@ -53,7 +53,7 @@ export default {
     },
     {
       id: 'mf-mozartplatz', title: 'Mozartplatz', where: 'Old Town, between the river and Residenzplatz', minutes: 15,
-      img: { file: 'mirabell-to-fortress/04-mozartplatz.jpg', alt: 'Bronze statue of Mozart on a marble pedestal in the middle of Mozartplatz' },
+      img: { file: 'mirabell-to-fortress/04-mozartplatz.jpg', alt: 'Mozartplatz with the Mozart statue on its pedestal, café umbrellas and the tower of St. Michael\'s church behind' },
       body: `<p>The square is small and busy, and its centre is the statue by Ludwig Schwanthaler. It was meant to be unveiled in 1841, fifty years after the composer's death, but workers found a Roman mosaic while preparing the ground, and recovering it took a year. The unveiling happened on 4 September 1842 with Mozart's sons present; a copy of the mosaic lies at the foot of the statue.</p>
 <p>Look around the edges. The low building at number 5, the Imhofstöckl, houses the tourist information office, with a piece of the old city wall behind it. The New Residence on the south side has held the Salzburg Museum since 2007; its tower carries the carillon that plays at 7 a.m., 11 a.m. and 6 p.m. At number 8 lived Constanze, Mozart's widow, and a few steps away the poet Georg Trakl was born in 1887.</p>`,
       anton: 'The square is older than the statue by centuries, but the statue is what people remember. Salzburg has a habit of turning its history into monuments, and this is the first one on our way.',
@@ -62,7 +62,7 @@ export default {
     },
     {
       id: 'mf-residenzplatz', title: 'Residenzplatz and the Residence Fountain', where: 'Between the Old and New Residence and the cathedral', minutes: 20,
-      img: { file: 'mirabell-to-fortress/05-residenzplatz.jpg', alt: 'Baroque Residence Fountain with horses, giants and a Triton figure in front of the cathedral' },
+      img: { file: 'mirabell-to-fortress/05-residenzplatz.jpg', alt: 'The Residence Fountain lit at night on Residenzplatz, with the domes and towers of the cathedral behind it' },
       body: `<p>Residenzplatz is the biggest of the squares that Wolf Dietrich cleared at the end of the 16th century; fifty-five medieval houses were demolished for it, and the design follows the Italian architect Vincenzo Scamozzi. On one side stands the Old Residence, where the prince-archbishops lived and governed; opposite is the New Residence; the cathedral closes the third side, and a row of townhouses the fourth.</p>
 <p>The fountain in the middle was commissioned by Archbishop Guidobald Thun and is attributed to Tommaso di Garone. Read it from the bottom up: four horses burst out of the rock, giants carry the lower basin, three dolphins balance the upper one, and a Triton on top blows a jet of water from his shell. In September the square hosts the St. Rupert's Fair, and in Advent the Christmas market, so its character changes with the calendar.</p>`,
       anton: 'Fifty-five houses were pulled down for this square. The archbishop wanted Rome north of the Alps, and he got it. Whether the people who lost their homes agreed is not written on any plaque.',
@@ -89,9 +89,9 @@ export default {
     },
     {
       id: 'mf-fortress', title: 'Hohensalzburg Fortress', where: 'Festungsberg · courtyards, bastions, museums, panorama', minutes: 90,
-      img: { file: 'mirabell-to-fortress/08-fortress.jpg', alt: 'Courtyard inside Hohensalzburg Fortress with the keep and a view over the city' },
+      img: { file: 'mirabell-to-fortress/08-fortress.jpg', alt: 'Hohensalzburg Fortress on its wooded hill, seen across a crenellated wall on the Mönchsberg' },
       body: `<p>Archbishop Gebhard started the castle in 1077, and his successors kept adding to it until around 1500, when Leonhard von Keutschach gave it the outline you see. It is the largest fully preserved castle in central Europe and was never taken by an enemy army. The courtyards and bastions are free to wander once you are inside; the museums, the Gothic prince's rooms with their original furnishings from 1501/02, the armoury and the panorama tour up the keep are in the ticket.</p>
-<p>Take the panorama route if your ticket allows: it climbs past the dungeon to the viewing platform at the top of the keep and comes down along the battlements to the Salzburg Bull, a mechanical organ. From the walls you see the city in the river bend, the Mirabell axis you walked, the Kapuzinerberg across the water, and south of everything the flat top of the Untersberg. On Sundays at 11.45 a.m. the tower trumpeters play from the trumpet tower.</p>`,
+<p>Take the panorama route if your ticket allows: it climbs past the dungeon to the viewing platform at the top of the keep and comes down along the battlements to the Salzburg Bull, a mechanical organ. From the walls you see the city in the river bend, the Mirabell axis you walked, the Kapuzinerberg across the water, and south of everything the flat top of the Untersberg.</p>`,
       anton: 'Everything you walked this morning is laid out below you like the garden plan: palace, beds, river, squares. This is where the walk closes its circle. Sit down on a bastion and let it settle.',
       dora: 'There is a café in the courtyard, but the best picnic spot is on the bastion facing south, with the mountains in front of you. Bring something from a bakery in town; the climb earns it.',
       task: 'From the walls, find the Mirabell Gardens where you started. Trace with your finger the route you walked. Then find one place you did not visit today and give it a name for your next walk.'

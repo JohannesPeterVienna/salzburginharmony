@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url><loc>https://www.salzburginharmony.com/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/mirabell-to-fortress/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/hellbrunn/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/nonnberg/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/leopoldskron/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/getreidegasse/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/kapuzinerberg/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/untersberg/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/tours/winter-salzburg/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/planner/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/hosts/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/about/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/imprint/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/privacy/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/contact/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/touren/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/planer/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/gastgeber/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/ueber/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/impressum/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/datenschutz/</loc><lastmod>2026-11-06</lastmod></url>
-<url><loc>https://www.salzburginharmony.com/de/kontakt/</loc><lastmod>2026-11-06</lastmod></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<url><loc>https://www.salzburginharmony.com/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/"/></url>
+<url><loc>https://www.salzburginharmony.com/tours/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/tours/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/touren/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/tours/"/></url>
+<url><loc>https://www.salzburginharmony.com/tours/mirabell-to-fortress/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/hellbrunn/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/nonnberg/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/leopoldskron/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/getreidegasse/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/kapuzinerberg/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/untersberg/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/tours/winter-salzburg/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/planner/</loc><lastmod>2026-11-24</lastmod></url>
+<url><loc>https://www.salzburginharmony.com/hosts/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/hosts/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/gastgeber/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/hosts/"/></url>
+<url><loc>https://www.salzburginharmony.com/about/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/about/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/ueber/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/about/"/></url>
+<url><loc>https://www.salzburginharmony.com/imprint/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/imprint/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/impressum/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/imprint/"/></url>
+<url><loc>https://www.salzburginharmony.com/privacy/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/privacy/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/datenschutz/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/privacy/"/></url>
+<url><loc>https://www.salzburginharmony.com/contact/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/contact/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/kontakt/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/contact/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/touren/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/tours/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/touren/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/tours/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/gastgeber/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/hosts/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/gastgeber/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/hosts/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/ueber/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/about/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/ueber/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/about/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/impressum/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/imprint/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/impressum/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/imprint/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/datenschutz/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/privacy/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/datenschutz/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/privacy/"/></url>
+<url><loc>https://www.salzburginharmony.com/de/kontakt/</loc><lastmod>2026-11-24</lastmod><xhtml:link rel="alternate" hreflang="en" href="https://www.salzburginharmony.com/contact/"/><xhtml:link rel="alternate" hreflang="de" href="https://www.salzburginharmony.com/de/kontakt/"/><xhtml:link rel="alternate" hreflang="x-default" href="https://www.salzburginharmony.com/contact/"/></url>
 </urlset>

@@ -1,9 +1,9 @@
-// Day planner rules (docs/assets/js/planner.js) – pure functions, no DOM.
+// Day planner rules (src/static/assets/js/planner.js) – pure functions, no DOM.
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const loadScript = (f) => { const m = { exports: {} }; new Function('module', 'exports', fs.readFileSync(path.join(__dirname, '..', f), 'utf8'))(m, m.exports); return m.exports; };
-const P = loadScript('docs/assets/js/planner.js');
+const P = loadScript('src/static/assets/js/planner.js');
 
 const CAT = { a: { title: 'Mirabell Palace', tour: 'Mirabell to the Fortress', minutes: 25 }, b: { title: 'Gardens', tour: 'Mirabell to the Fortress', minutes: 35 }, c: { title: 'Fortress', tour: 'Mirabell to the Fortress', minutes: 90 } };
 

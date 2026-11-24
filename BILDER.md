@@ -1,71 +1,77 @@
 # Bilder für salzburginharmony.com
 
-Stand: 2026-11-06. Dateien nach `docs/assets/img/tours/<pfad>` legen; der Build setzt sie automatisch ein (vorher Platzhalter mit Alt-Text). Jedes Bild braucht einen Nachweis (Lizenz/Quelle oder „KI-generiert“) in `docs/assets/img/tours/NACHWEISE.md`.
-Format: JPG, Qualität ~80, hero 1600×900, Stationen 1200×800, OG-Bild 1200×630 (`docs/assets/img/og-salzburg-in-harmony.png`).
+Stand: 2026-11-24. Wird vom Build erzeugt. Ein Bild erscheint nur, wenn die Datei unter `docs/assets/img/tours/<pfad>` liegt UND in `src/content/credits.mjs` (und BILDNACHWEISE.md) einen Lizenznachweis hat. Fehlt eines davon, wird die Station ohne Bild gestaltet – kein Platzhalter.
+Format: JPG, Qualität ~80, Titelbild 1600 px breit, Stationen 1200×800.
 
-| Datei | Verwendung | Alt-Text (EN) | Status |
-|---|---|---|---|
-| `mirabell-to-fortress/hero.jpg` | From Mirabell Palace to the Fortress – hero (16:9, ≥1600 px wide) | Mirabell Gardens in summer bloom, with flower beds and the fortress on its hill in the distance | vorhanden |
-| `mirabell-to-fortress/01-palace.jpg` | Mirabell to the Fortress – stop: Mirabell Palace and the angel staircase (3:2, ≥1200 px wide) | White marble balustrade of the angel staircase in Mirabell Palace with small putti figures | fehlt |
-| `mirabell-to-fortress/02-gardens.jpg` | Mirabell to the Fortress – stop: Mirabell Gardens: the axis to the fortress (3:2, ≥1200 px wide) | Formal flower beds of the Mirabell Gardens with the central fountain and the cathedral dome in the distance | fehlt |
-| `mirabell-to-fortress/03-bridge.jpg` | Mirabell to the Fortress – stop: Makartplatz and the river crossing (3:2, ≥1200 px wide) | Pedestrian bridge over the Salzach river with the Old Town and fortress behind it | fehlt |
-| `mirabell-to-fortress/04-mozartplatz.jpg` | Mirabell to the Fortress – stop: Mozartplatz (3:2, ≥1200 px wide) | Bronze statue of Mozart on a marble pedestal in the middle of Mozartplatz | fehlt |
-| `mirabell-to-fortress/05-residenzplatz.jpg` | Mirabell to the Fortress – stop: Residenzplatz and the Residence Fountain (3:2, ≥1200 px wide) | Baroque Residence Fountain with horses, giants and a Triton figure in front of the cathedral | fehlt |
-| `mirabell-to-fortress/06-cathedral.jpg` | Mirabell to the Fortress – stop: Domplatz and the cathedral (3:2, ≥1200 px wide) | Marble facade of Salzburg Cathedral with its two towers seen from Domplatz | fehlt |
-| `mirabell-to-fortress/07-kapitelplatz.jpg` | Mirabell to the Fortress – stop: Kapitelplatz and the way up (3:2, ≥1200 px wide) | Kapitelplatz with the large golden sphere sculpture and the fortress on the hill above | fehlt |
-| `mirabell-to-fortress/08-fortress.jpg` | Mirabell to the Fortress – stop: Hohensalzburg Fortress (3:2, ≥1200 px wide) | Courtyard inside Hohensalzburg Fortress with the keep and a view over the city | fehlt |
-| `hellbrunn/hero.jpg` | Hellbrunn: the Water Palace in the South – hero (16:9, ≥1600 px wide) | Yellow facade of Hellbrunn Palace reflected in the pond of the water parterre | vorhanden |
-| `hellbrunn/01-allee.jpg` | Hellbrunn – stop: Hellbrunner Allee: the archbishop's approach (3:2, ≥1200 px wide) | Straight tree-lined avenue of Hellbrunner Allee with old oaks and lime trees in autumn colour | fehlt |
-| `hellbrunn/02-palace.jpg` | Hellbrunn – stop: The palace and the courtyard (3:2, ≥1200 px wide) | Entrance courtyard of Hellbrunn Palace with the ochre facade and the hill rising behind | fehlt |
-| `hellbrunn/03-fountains.jpg` | Hellbrunn – stop: The trick fountains (3:2, ≥1200 px wide) | Stone table with seats in the garden of Hellbrunn where hidden water jets spray the guests | fehlt |
-| `hellbrunn/04-park.jpg` | Hellbrunn – stop: The water parterre and the park (3:2, ≥1200 px wide) | Long pond with stone statues and clipped hedges in the Hellbrunn park with the palace in the background | fehlt |
-| `hellbrunn/05-hill.jpg` | Hellbrunn – stop: The hill, the stone theatre and the Monatsschlössl (3:2, ≥1200 px wide) | Small hilltop lodge called Monatsschlössl above Hellbrunn seen through trees | fehlt |
-| `hellbrunn/06-zoo.jpg` | Hellbrunn – stop: Optional: Zoo Salzburg and the way back (3:2, ≥1200 px wide) | Rocky hillside enclosure of Zoo Salzburg at Hellbrunn with trees and a mountain backdrop | fehlt |
-| `nonnberg/hero.jpg` | Nonnberg: the Oldest Convent and the Quiet Hill – hero (16:9, ≥1600 px wide) | Salzburg Old Town and church domes below the Festungsberg, with snow-capped Alps behind | vorhanden |
-| `nonnberg/01-kaigasse.jpg` | Nonnberg – stop: Kaigasse: leaving the squares behind (3:2, ≥1200 px wide) | Narrow Kaigasse in Salzburg Old Town with pastel house fronts and the fortress hill above | fehlt |
-| `nonnberg/02-stiege.jpg` | Nonnberg – stop: The Nonnbergstiege (3:2, ≥1200 px wide) | Old stone staircase Nonnbergstiege climbing between walls towards Nonnberg Abbey | fehlt |
-| `nonnberg/03-church.jpg` | Nonnberg – stop: The abbey church (3:2, ≥1200 px wide) | Late Gothic interior of Nonnberg Abbey church with the carved winged altar | fehlt |
-| `nonnberg/04-terrace.jpg` | Nonnberg – stop: The cemetery and the view south (3:2, ≥1200 px wide) | Small cemetery of Nonnberg Abbey with wrought-iron crosses and a view over Nonntal to the Untersberg | fehlt |
-| `nonnberg/05-lane.jpg` | Nonnberg – stop: The lane down to Nonntal (3:2, ≥1200 px wide) | Steep narrow lane with old walls leading down from Nonnberg Abbey into the Nonntal district | fehlt |
-| `nonnberg/06-kajetanerplatz.jpg` | Nonnberg – stop: Kajetanerplatz and back into town (3:2, ≥1200 px wide) | Baroque dome of the Kajetanerkirche on Kajetanerplatz at the southern edge of Salzburg Old Town | fehlt |
-| `leopoldskron/hero.jpg` | Leopoldskron: a Palace Seen Across the Water – hero (16:9, ≥1600 px wide) | Leopoldskron Palace seen across the still water of the Leopoldskroner Weiher with Hohensalzburg Fortress on the hill behind | fehlt |
-| `leopoldskron/01-nonntal.jpg` | Leopoldskron – stop: Out through Nonntal (3:2, ≥1200 px wide) | Residential street in Nonntal, Salzburg, with villas, gardens and the Festungsberg behind | fehlt |
-| `leopoldskron/02-pond.jpg` | Leopoldskron – stop: The pond: first view (3:2, ≥1200 px wide) | Reeds and calm water of the Leopoldskroner Weiher with the palace facade small in the distance | fehlt |
-| `leopoldskron/03-palace.jpg` | Leopoldskron – stop: The palace from outside (3:2, ≥1200 px wide) | Baroque garden front of Schloss Leopoldskron seen from the public path, with a stone balustrade and the water in front | fehlt |
-| `leopoldskron/04-round.jpg` | Leopoldskron – stop: Around the pond (3:2, ≥1200 px wide) | Gravel footpath along the western shore of the Leopoldskron pond lined with old trees | fehlt |
-| `leopoldskron/05-moos.jpg` | Leopoldskron – stop: Out to the Moos meadows (3:2, ≥1200 px wide) | Flat open meadows of the Leopoldskroner Moos south of Salzburg with the Untersberg massif on the horizon | fehlt |
-| `leopoldskron/06-back.jpg` | Leopoldskron – stop: Back to town (3:2, ≥1200 px wide) | Evening light on the Leopoldskron pond with the palace and fortress silhouetted against the sky | fehlt |
-| `getreidegasse/hero.jpg` | Getreidegasse and the Lanes of the Old Town – hero (16:9, ≥1600 px wide) | Wrought-iron guild signs hanging over the narrow Getreidegasse in Salzburg with tall house fronts on both sides | fehlt |
-| `getreidegasse/01-altermarkt.jpg` | Getreidegasse – stop: Alter Markt: the oldest marketplace (3:2, ≥1200 px wide) | Alter Markt square in Salzburg with the St. Florian fountain and the narrow smallest house beside a coffeehouse | fehlt |
-| `getreidegasse/02-signs.jpg` | Getreidegasse – stop: The street and its signs (3:2, ≥1200 px wide) | Detail of a gilded wrought-iron guild sign over a shop in the Getreidegasse | fehlt |
-| `getreidegasse/03-birthplace.jpg` | Getreidegasse – stop: Mozart's birthplace, Getreidegasse 9 (3:2, ≥1200 px wide) | Yellow facade of the house at Getreidegasse 9 in Salzburg where Mozart was born, with crowds in the street below | fehlt |
-| `getreidegasse/04-passage.jpg` | Getreidegasse – stop: The through-houses (3:2, ≥1200 px wide) | Vaulted passage of a through-house in Salzburg leading from the Getreidegasse to a courtyard and the next street | fehlt |
-| `getreidegasse/05-market.jpg` | Getreidegasse – stop: Universitätsplatz: the market and the church (3:2, ≥1200 px wide) | Market stalls with vegetables and flowers on Universitätsplatz in front of the white baroque Kollegienkirche | fehlt |
-| `getreidegasse/06-stpeter.jpg` | Getreidegasse – stop: St. Peter's cemetery and catacombs (3:2, ≥1200 px wide) | Wrought-iron grave crosses and arcaded tombs in St. Peter's cemetery with the rock face of the Mönchsberg and the catacomb windows above | fehlt |
-| `getreidegasse/07-bakery.jpg` | Getreidegasse – stop: The abbey bakery and the end of the walk (3:2, ≥1200 px wide) | Wooden water wheel turning beside the old abbey bakery of St. Peter in Salzburg | fehlt |
-| `kapuzinerberg/hero.jpg` | Kapuzinerberg: the Green Hill Across the River – hero (16:9, ≥1600 px wide) | Wooded slope of the Kapuzinerberg above the Old Town roofs, seen from the opposite hill | vorhanden |
-| `kapuzinerberg/01-linzergasse.jpg` | Kapuzinerberg – stop: Platzl and the Linzergasse (3:2, ≥1200 px wide) | Pedestrian Linzergasse in Salzburg with shop fronts and the Kapuzinerberg rising at the end | fehlt |
-| `kapuzinerberg/02-stations.jpg` | Kapuzinerberg – stop: The Stations of the Cross (3:2, ≥1200 px wide) | Stepped pilgrim path up the Kapuzinerberg with small baroque chapels of the Stations of the Cross between trees | fehlt |
-| `kapuzinerberg/03-monastery.jpg` | Kapuzinerberg – stop: The Capuchin monastery and the Hettwer bastion (3:2, ≥1200 px wide) | Simple church front of the Capuchin monastery on the Kapuzinerberg with a stone bastion and a wide view over Salzburg | fehlt |
-| `kapuzinerberg/04-house.jpg` | Kapuzinerberg – stop: The writer's house (3:2, ≥1200 px wide) | Yellow house called Paschinger Schlössl on the wooded slope of the Kapuzinerberg, seen from the path | fehlt |
-| `kapuzinerberg/05-basteiweg.jpg` | Kapuzinerberg – stop: The Basteiweg along the walls (3:2, ≥1200 px wide) | Footpath along a long stone fortification wall with small towers on the Kapuzinerberg, forest on one side | fehlt |
-| `kapuzinerberg/06-summit.jpg` | Kapuzinerberg – stop: The Franziskischlössl on the summit (3:2, ≥1200 px wide) | Small square castle Franziskischlössl with a tower on the wooded summit of the Kapuzinerberg | fehlt |
-| `kapuzinerberg/07-steingasse.jpg` | Kapuzinerberg – stop: Down through the Steingasse (3:2, ≥1200 px wide) | Cobbled medieval Steingasse in Salzburg with narrow high houses and an old town gate | fehlt |
-| `untersberg/hero.jpg` | Untersberg: Salzburg’s Mountain by Cable Car – hero (16:9, ≥1600 px wide) | Snow-covered Untersberg summit above the Salzburg basin on a clear winter day | vorhanden |
-| `untersberg/01-valley.jpg` | Untersberg – stop: Grödig and the valley station (3:2, ≥1200 px wide) | Valley station of the Untersberg cable car in Grödig with the steep forested mountain face behind | fehlt |
-| `untersberg/02-ride.jpg` | Untersberg – stop: The ride up (3:2, ≥1200 px wide) | View from inside the Untersberg gondola looking down on treetops, the valley floor and the city of Salzburg in the distance | fehlt |
-| `untersberg/03-top.jpg` | Untersberg – stop: Geiereck: the top station (3:2, ≥1200 px wide) | Terrace of the Untersberg mountain station with a panorama over Salzburg and the Alpine foothills under a blue sky | fehlt |
-| `untersberg/04-hochthron.jpg` | Untersberg – stop: The Salzburger Hochthron (3:2, ≥1200 px wide) | Summit cross of the Salzburger Hochthron on the Untersberg with limestone rock and wide views over the Alps | fehlt |
-| `untersberg/05-plateau.jpg` | Untersberg – stop: Legends, ice and marble (3:2, ≥1200 px wide) | Limestone plateau of the Untersberg with hollows, dwarf pines and a border marker between Austria and Germany | fehlt |
-| `untersberg/06-fuerstenbrunn.jpg` | Untersberg – stop: Down, and the marble village (3:2, ≥1200 px wide) | Village of Fürstenbrunn at the foot of the Untersberg with the old marble quarry area and a stream | fehlt |
-| `winter-salzburg/hero.jpg` | Winter Salzburg: Markets, Lights and Cold Clear Days – hero (16:9, ≥1600 px wide) | Wooden stalls of the Salzburg Christmas market on Residenzplatz at dusk with strings of lights and the cathedral towers behind | fehlt |
-| `winter-salzburg/01-icerink.jpg` | Winter Salzburg – stop: Mozartplatz and the ice rink (3:2, ≥1200 px wide) | Open-air ice rink on Mozartplatz in Salzburg with skaters, the Mozart statue and lit house fronts | fehlt |
-| `winter-salzburg/02-residenzplatz.jpg` | Winter Salzburg – stop: The market on Residenzplatz (3:2, ≥1200 px wide) | Christmas market stalls around the Residence Fountain in Salzburg with lights strung overhead at night | fehlt |
-| `winter-salzburg/03-domplatz.jpg` | Winter Salzburg – stop: Domplatz, the cathedral and the crib (3:2, ≥1200 px wide) | Christmas market on Domplatz in Salzburg in front of the cathedral facade with a decorated tree | fehlt |
-| `winter-salzburg/04-kapitelplatz.jpg` | Winter Salzburg – stop: Kapitelplatz, the way up and New Year's Eve (3:2, ≥1200 px wide) | Kapitelplatz in winter with the golden sphere sculpture, light snow and the fortress railway station below the castle | fehlt |
-| `winter-salzburg/05-fortress-advent.jpg` | Winter Salzburg – stop: The fortress in Advent (3:2, ≥1200 px wide) | Advent market stalls in the inner courtyard of Hohensalzburg Fortress with snow on the roofs and lanterns | fehlt |
-| `winter-salzburg/06-mirabell-winter.jpg` | Winter Salzburg – stop: Mirabell in winter (3:2, ≥1200 px wide) | Mirabell Gardens in winter with bare clipped hedges, the fountain shut off and the fortress in cold light | fehlt |
-| `winter-salzburg/07-hellbrunn-advent.jpg` | Winter Salzburg – stop: Optional: Hellbrunn's courtyard market (3:2, ≥1200 px wide) | Advent market in the courtyard of Hellbrunn Palace with Christmas trees, lanterns and the palace facade in the evening | fehlt |
-| `og-salzburg-in-harmony.png` (in `assets/img/`) | Open-Graph-Bild aller Seiten | Anton und Dora vor der Salzburger Altstadt, Schriftzug Salzburg in Harmony | vorhanden |
+## Vorhanden (10)
 
-Regeln: keine Bilder von salzburg.info oder anderen fremden Seiten ohne Lizenz; keine Motive, die auf den bekannten Film oder die bekannte Familie anspielen (keine Filmszenen nachstellen, keine Kostüme aus dem Film); Avatare nur die beiden KI-Porträts `anton.png`/`dora.png`.
+| Datei | Verwendung | Alt-Text (EN) |
+|---|---|---|
+| `mirabell-to-fortress/hero.jpg` | From Mirabell Palace to the Fortress – Titelbild | Mirabell Gardens in summer bloom, with flower beds and the fortress on its hill in the distance |
+| `mirabell-to-fortress/01-palace.jpg` | Mirabell to the Fortress – Station: Mirabell Palace and the angel staircase | Mirabell Palace, a long cream-coloured baroque building, seen from the garden with red flower beds and clipped topiary in front |
+| `mirabell-to-fortress/04-mozartplatz.jpg` | Mirabell to the Fortress – Station: Mozartplatz | Mozartplatz with the Mozart statue on its pedestal, café umbrellas and the tower of St. Michael's church behind |
+| `mirabell-to-fortress/05-residenzplatz.jpg` | Mirabell to the Fortress – Station: Residenzplatz and the Residence Fountain | The Residence Fountain lit at night on Residenzplatz, with the domes and towers of the cathedral behind it |
+| `mirabell-to-fortress/08-fortress.jpg` | Mirabell to the Fortress – Station: Hohensalzburg Fortress | Hohensalzburg Fortress on its wooded hill, seen across a crenellated wall on the Mönchsberg |
+| `hellbrunn/hero.jpg` | Hellbrunn: the Water Palace in the South – Titelbild | Yellow facade of Hellbrunn Palace reflected in the pond of the water parterre |
+| `nonnberg/hero.jpg` | Nonnberg: the Oldest Convent and the Quiet Hill – Titelbild | Salzburg Old Town and church domes below the Festungsberg, with snow-capped Alps behind |
+| `getreidegasse/06-stpeter.jpg` | Getreidegasse – Station: St. Peter's cemetery and catacombs | St. Peter's cemetery: a cobbled path between flower-planted graves and wrought-iron crosses, the arcades and the Mönchsberg cliff behind |
+| `kapuzinerberg/hero.jpg` | Kapuzinerberg: the Green Hill Across the River – Titelbild | Wooded slope of the Kapuzinerberg above the Old Town roofs, seen from the opposite hill |
+| `untersberg/hero.jpg` | Untersberg: Salzburg’s Mountain by Cable Car – Titelbild | Snow-covered Untersberg summit above the Salzburg basin on a clear winter day |
+
+## Fehlt (51) – Seite wird ohne Bild gezeigt
+
+| Datei (vorgesehen) | Verwendung | Motiv |
+|---|---|---|
+| `mirabell-to-fortress/02-gardens.jpg` | Mirabell to the Fortress – Station: Mirabell Gardens: the axis to the fortress | Formal flower beds of the Mirabell Gardens with the central fountain and the cathedral dome in the distance |
+| `mirabell-to-fortress/03-bridge.jpg` | Mirabell to the Fortress – Station: Makartplatz and the river crossing | Pedestrian bridge over the Salzach river with the Old Town and fortress behind it |
+| `mirabell-to-fortress/06-cathedral.jpg` | Mirabell to the Fortress – Station: Domplatz and the cathedral | Marble facade of Salzburg Cathedral with its two towers seen from Domplatz |
+| `mirabell-to-fortress/07-kapitelplatz.jpg` | Mirabell to the Fortress – Station: Kapitelplatz and the way up | Kapitelplatz with the large golden sphere sculpture and the fortress on the hill above |
+| `hellbrunn/01-allee.jpg` | Hellbrunn – Station: Hellbrunner Allee: the archbishop's approach | Straight tree-lined avenue of Hellbrunner Allee with old oaks and lime trees in autumn colour |
+| `hellbrunn/02-palace.jpg` | Hellbrunn – Station: The palace and the courtyard | Entrance courtyard of Hellbrunn Palace with the ochre facade and the hill rising behind |
+| `hellbrunn/03-fountains.jpg` | Hellbrunn – Station: The trick fountains | Stone table with seats in the garden of Hellbrunn where hidden water jets spray the guests |
+| `hellbrunn/04-park.jpg` | Hellbrunn – Station: The water parterre and the park | Long pond with stone statues and clipped hedges in the Hellbrunn park with the palace in the background |
+| `hellbrunn/05-hill.jpg` | Hellbrunn – Station: The hill, the stone theatre and the Monatsschlössl | Small hilltop lodge called Monatsschlössl above Hellbrunn seen through trees |
+| `hellbrunn/06-zoo.jpg` | Hellbrunn – Station: Optional: Zoo Salzburg and the way back | Rocky hillside enclosure of Zoo Salzburg at Hellbrunn with trees and a mountain backdrop |
+| `nonnberg/01-kaigasse.jpg` | Nonnberg – Station: Kaigasse: leaving the squares behind | Narrow Kaigasse in Salzburg Old Town with pastel house fronts and the fortress hill above |
+| `nonnberg/02-stiege.jpg` | Nonnberg – Station: The Nonnbergstiege | Old stone staircase Nonnbergstiege climbing between walls towards Nonnberg Abbey |
+| `nonnberg/03-church.jpg` | Nonnberg – Station: The abbey church | Late Gothic interior of Nonnberg Abbey church with the carved winged altar |
+| `nonnberg/04-terrace.jpg` | Nonnberg – Station: The cemetery and the view south | Small cemetery of Nonnberg Abbey with wrought-iron crosses and a view over Nonntal to the Untersberg |
+| `nonnberg/05-lane.jpg` | Nonnberg – Station: The lane down to Nonntal | Steep narrow lane with old walls leading down from Nonnberg Abbey into the Nonntal district |
+| `nonnberg/06-kajetanerplatz.jpg` | Nonnberg – Station: Kajetanerplatz and back into town | Baroque dome of the Kajetanerkirche on Kajetanerplatz at the southern edge of Salzburg Old Town |
+| `leopoldskron/hero.jpg` | Leopoldskron: a Palace Seen Across the Water – Titelbild | Leopoldskron Palace seen across the still water of the Leopoldskroner Weiher with Hohensalzburg Fortress on the hill behind |
+| `leopoldskron/01-nonntal.jpg` | Leopoldskron – Station: Out through Nonntal | Residential street in Nonntal, Salzburg, with villas, gardens and the Festungsberg behind |
+| `leopoldskron/02-pond.jpg` | Leopoldskron – Station: The pond: first view | Reeds and calm water of the Leopoldskroner Weiher with the palace facade small in the distance |
+| `leopoldskron/03-palace.jpg` | Leopoldskron – Station: The palace from outside | Baroque garden front of Schloss Leopoldskron seen from the public path, with a stone balustrade and the water in front |
+| `leopoldskron/04-round.jpg` | Leopoldskron – Station: Along the shore | Gravel footpath along the western shore of the Leopoldskron pond lined with old trees |
+| `leopoldskron/05-moos.jpg` | Leopoldskron – Station: Out to the Moos meadows | Flat open meadows of the Leopoldskroner Moos south of Salzburg with the Untersberg massif on the horizon |
+| `leopoldskron/06-back.jpg` | Leopoldskron – Station: Back to town | Evening light on the Leopoldskron pond with the palace and fortress silhouetted against the sky |
+| `getreidegasse/hero.jpg` | Getreidegasse and the Lanes of the Old Town – Titelbild | Wrought-iron guild signs hanging over the narrow Getreidegasse in Salzburg with tall house fronts on both sides |
+| `getreidegasse/01-altermarkt.jpg` | Getreidegasse – Station: Alter Markt: the oldest marketplace | Alter Markt square in Salzburg with the St. Florian fountain and the narrow smallest house beside a coffeehouse |
+| `getreidegasse/02-signs.jpg` | Getreidegasse – Station: The street and its signs | Detail of a gilded wrought-iron guild sign over a shop in the Getreidegasse |
+| `getreidegasse/03-birthplace.jpg` | Getreidegasse – Station: Mozart's birthplace, Getreidegasse 9 | Yellow facade of the house at Getreidegasse 9 in Salzburg where Mozart was born, with crowds in the street below |
+| `getreidegasse/04-passage.jpg` | Getreidegasse – Station: The through-houses | Vaulted passage of a through-house in Salzburg leading from the Getreidegasse to a courtyard and the next street |
+| `getreidegasse/05-market.jpg` | Getreidegasse – Station: Universitätsplatz: the market and the church | Market stalls with vegetables and flowers on Universitätsplatz in front of the white baroque Kollegienkirche |
+| `getreidegasse/07-bakery.jpg` | Getreidegasse – Station: The abbey bakery and the end of the walk | Wooden water wheel turning beside the old abbey bakery of St. Peter in Salzburg |
+| `kapuzinerberg/01-linzergasse.jpg` | Kapuzinerberg – Station: Platzl and the Linzergasse | Pedestrian Linzergasse in Salzburg with shop fronts and the Kapuzinerberg rising at the end |
+| `kapuzinerberg/02-stations.jpg` | Kapuzinerberg – Station: The Stations of the Cross | Stepped pilgrim path up the Kapuzinerberg with small baroque chapels of the Stations of the Cross between trees |
+| `kapuzinerberg/03-monastery.jpg` | Kapuzinerberg – Station: The Capuchin monastery and the Hettwer bastion | Simple church front of the Capuchin monastery on the Kapuzinerberg with a stone bastion and a wide view over Salzburg |
+| `kapuzinerberg/04-house.jpg` | Kapuzinerberg – Station: The writer's house | Yellow house called Paschinger Schlössl on the wooded slope of the Kapuzinerberg, seen from the path |
+| `kapuzinerberg/05-basteiweg.jpg` | Kapuzinerberg – Station: The Basteiweg along the walls | Footpath along a long stone fortification wall with small towers on the Kapuzinerberg, forest on one side |
+| `kapuzinerberg/06-summit.jpg` | Kapuzinerberg – Station: The Franziskischlössl on the summit | Small square castle Franziskischlössl with a tower on the wooded summit of the Kapuzinerberg |
+| `kapuzinerberg/07-steingasse.jpg` | Kapuzinerberg – Station: Down through the Steingasse | Cobbled medieval Steingasse in Salzburg with narrow high houses and an old town gate |
+| `untersberg/01-valley.jpg` | Untersberg – Station: Grödig and the valley station | Valley station of the Untersberg cable car in Grödig with the steep forested mountain face behind |
+| `untersberg/02-ride.jpg` | Untersberg – Station: The ride up | View from inside the Untersberg gondola looking down on treetops, the valley floor and the city of Salzburg in the distance |
+| `untersberg/03-top.jpg` | Untersberg – Station: Geiereck: the top station | Terrace of the Untersberg mountain station with a panorama over Salzburg and the Alpine foothills under a blue sky |
+| `untersberg/04-hochthron.jpg` | Untersberg – Station: The Salzburger Hochthron | Summit cross of the Salzburger Hochthron on the Untersberg with limestone rock and wide views over the Alps |
+| `untersberg/05-plateau.jpg` | Untersberg – Station: Legends, ice and marble | Limestone plateau of the Untersberg with hollows, dwarf pines and a border marker between Austria and Germany |
+| `untersberg/06-fuerstenbrunn.jpg` | Untersberg – Station: Down, and the marble village | Village of Fürstenbrunn at the foot of the Untersberg with the old marble quarry area and a stream |
+| `winter-salzburg/hero.jpg` | Winter Salzburg: Markets, Lights and Cold Clear Days – Titelbild | Wooden stalls of the Salzburg Christmas market on Residenzplatz at dusk with strings of lights and the cathedral towers behind |
+| `winter-salzburg/01-icerink.jpg` | Winter Salzburg – Station: Mozartplatz and the ice rink | Open-air ice rink on Mozartplatz in Salzburg with skaters, the Mozart statue and lit house fronts |
+| `winter-salzburg/02-residenzplatz.jpg` | Winter Salzburg – Station: The market on Residenzplatz | Christmas market stalls around the Residence Fountain in Salzburg with lights strung overhead at night |
+| `winter-salzburg/03-domplatz.jpg` | Winter Salzburg – Station: Domplatz, the cathedral and the crib | Christmas market on Domplatz in Salzburg in front of the cathedral facade with a decorated tree |
+| `winter-salzburg/04-kapitelplatz.jpg` | Winter Salzburg – Station: Kapitelplatz, the way up and New Year's Eve | Kapitelplatz in winter with the golden sphere sculpture, light snow and the fortress railway station below the castle |
+| `winter-salzburg/05-fortress-advent.jpg` | Winter Salzburg – Station: The fortress in Advent | Advent market stalls in the inner courtyard of Hohensalzburg Fortress with snow on the roofs and lanterns |
+| `winter-salzburg/06-mirabell-winter.jpg` | Winter Salzburg – Station: Mirabell in winter | Mirabell Gardens in winter with bare clipped hedges, the fountain shut off and the fortress in cold light |
+| `winter-salzburg/07-hellbrunn-advent.jpg` | Winter Salzburg – Station: Optional: Hellbrunn's courtyard market | Advent market in the courtyard of Hellbrunn Palace with Christmas trees, lanterns and the palace facade in the evening |
+
+Regeln: nur lizenzierte Fotos mit Nachweis (Urheber, Lizenz, Quelle, Abrufdatum); keine Bilder fremder Websites ohne Lizenz; keine erfundenen Fotos und keine KI-Fotos realer Orte; keine Motive, die auf einen bekannten Film oder eine bekannte Familie anspielen; Avatare nur die beiden KI-Porträts `anton.png`/`dora.png`.

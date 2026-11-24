@@ -1,7 +1,7 @@
 {
   "name": "salzburginharmony",
   "private": true,
-  "description": "salzburginharmony.com – static site (src/ → docs/) for GitHub Pages",
+  "description": "salzburginharmony.com – static site (src/ → docs/) for the World4You web space",
   "type": "module",
   "scripts": {
     "build": "node src/build.mjs",

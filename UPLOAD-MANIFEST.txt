@@ -1,0 +1,107 @@
+UPLOAD-MANIFEST – www.salzburginharmony.com – Build 2026-11-24
+Erzeugt von src/build.mjs. Quelle: Ordner docs/ dieses Repos (inkl. der versteckten Datei docs/.htaccess). Ziel: World4You-Webspace /html/salzburg (Document Root von www.salzburginharmony.com).
+Upload SELEKTIV: nur die unten gelisteten Dateien hochladen bzw. überschreiben. Nichts löschen, kein Spiegeln/Synchronisieren.
+Auf dem Server bleiben unangetastet: traffic.php, traffic-config.php, traffic-data.php, /html/.htaccess (übergeordneter Ordner) und alle anderen dort liegenden Dateien.
+/html/salzburg/.htaccess existiert laut Hosting-Prüfung (24.11.2026) noch nicht und wird mit docs/.htaccess neu angelegt. Sie ersetzt für diesen Ordner die RewriteRules aus /html/.htaccess (Apache-Standard); RewriteOptions wird nicht gesetzt.
+Überschrieben werden auf dem Server: index.html, robots.txt, sitemap.xml, ads.txt (Inhalt gleich), 404.html falls vorhanden.
+
+== 1. Hochzuladende Dateien (48) ==
+Pfad relativ zu docs/ -> Zielpfad | SHA-256 | Bytes
+.htaccess -> /html/salzburg/.htaccess | 9c5718ea2556645087fa426488522887310f8967a3db14b7c0c25adccb80346a | 3558
+404.html -> /html/salzburg/404.html | 6260d62be973ff173919cb91e44cdf718d92114da8b1e03bac5230cb53777219 | 6959
+about/index.html -> /html/salzburg/about/index.html | fb421c2ee9b3fb46ec696a65af9557607b2584803dfe3c76d8419df76f1b5404 | 14437
+ads.txt -> /html/salzburg/ads.txt | 04895b2329ee930264ad74665a5fa15bf3c1dc85e71a59e20a475141774e3a06 | 59
+assets/css/harmony.css -> /html/salzburg/assets/css/harmony.css | 95317d9efd28a1d711f1af7112d9cfd036bd90fa29c2edd146cbac4bda93b092 | 20828
+assets/img/anton-160.png -> /html/salzburg/assets/img/anton-160.png | f3a9a9d571cd783514fa35a671c4470108d76ad577919f876106284500ae7f9d | 50090
+assets/img/anton.png -> /html/salzburg/assets/img/anton.png | cfe22e69ead7eb52461af274d37eaefb27ac68adc8425a06afdb4d4ad8e561fd | 875131
+assets/img/dora-160.png -> /html/salzburg/assets/img/dora-160.png | 49f20d5b7007110111fc71391a368d03fada9540fcbcf5bed41f9524fab57d58 | 46761
+assets/img/dora.png -> /html/salzburg/assets/img/dora.png | 09c319a70d7a94de02706135369cfcc64688e79c01a9572654e4821d6029466e | 804398
+assets/img/og-salzburg-in-harmony.png -> /html/salzburg/assets/img/og-salzburg-in-harmony.png | 8d3bc67fb43d998e84cae441a932652e7c8fd842cc236ddd0decf57dacf0c0a7 | 215460
+assets/img/tours/getreidegasse/06-stpeter.jpg -> /html/salzburg/assets/img/tours/getreidegasse/06-stpeter.jpg | 7d6bc607752c3957adbded2c270263f55baccc293965eef1c11219704e423038 | 348326
+assets/img/tours/hellbrunn/hero.jpg -> /html/salzburg/assets/img/tours/hellbrunn/hero.jpg | a3a9c35ba5b257d87052fc2de9706b63fbdbcf58330df8467d962589454888d0 | 386065
+assets/img/tours/kapuzinerberg/hero.jpg -> /html/salzburg/assets/img/tours/kapuzinerberg/hero.jpg | cc954d74bfd2a7ae9161dae9c71629c248fed921406311bb869ccd7ebc8d7f44 | 329211
+assets/img/tours/mirabell-to-fortress/01-palace.jpg -> /html/salzburg/assets/img/tours/mirabell-to-fortress/01-palace.jpg | 2c6efc8e18d87514c8c73e87a49f1ea0a9201f63d2ec220a7dece6f9ecccd6c9 | 173575
+assets/img/tours/mirabell-to-fortress/04-mozartplatz.jpg -> /html/salzburg/assets/img/tours/mirabell-to-fortress/04-mozartplatz.jpg | aaa70c425778297d2edc875fae17d54f49b15fc5dcf156943eab503ba2b63ec7 | 162165
+assets/img/tours/mirabell-to-fortress/05-residenzplatz.jpg -> /html/salzburg/assets/img/tours/mirabell-to-fortress/05-residenzplatz.jpg | 80187a5bb28e88370e186e9e91b1cd613596e1590384d3ec098b817f8f41e413 | 115905
+assets/img/tours/mirabell-to-fortress/08-fortress.jpg -> /html/salzburg/assets/img/tours/mirabell-to-fortress/08-fortress.jpg | dcd479e1148e871f26fc494cc311b92175bd4d67f56d0b5b38578479bd31ffff | 239277
+assets/img/tours/mirabell-to-fortress/hero.jpg -> /html/salzburg/assets/img/tours/mirabell-to-fortress/hero.jpg | 0f5930aeb63785c1ceb1dd537b5ed0a21fc86264b3a64493d2dd53cb37569003 | 302092
+assets/img/tours/nonnberg/hero.jpg -> /html/salzburg/assets/img/tours/nonnberg/hero.jpg | b8d94ad19c3eedbb86ac3dc39e94e019adcbfde2e8b37fbbbb26ddad97e471b0 | 361183
+assets/img/tours/untersberg/hero.jpg -> /html/salzburg/assets/img/tours/untersberg/hero.jpg | 0aa0547ced621f5d969f9e6421f14796d7bc426408cee32db296173a1828c3fe | 285461
+assets/js/consent.js -> /html/salzburg/assets/js/consent.js | 5a4e7994ebae01e7c439b123878eea1b14d1c905639009f29906e55197f2048e | 6343
+assets/js/harmony.js -> /html/salzburg/assets/js/harmony.js | 7278dd9e3d3f0b950ee6f3f73b971739918f3fcd88680de43c7c3e842ac7cfba | 27729
+assets/js/planner.js -> /html/salzburg/assets/js/planner.js | a4e6b69f945d5fd1325c802f3b376107ec1a393ad64a93e5aa3d4ff1d64f3288 | 5750
+contact/index.html -> /html/salzburg/contact/index.html | 4b3604b4406797f4214d267bd425bab0abb3b85a050006e28816f94d04753a67 | 8651
+de/datenschutz/index.html -> /html/salzburg/de/datenschutz/index.html | eb38975141e0f37c4b2a73bc3bea39b1f8981462b889a1e72fbd9ea5c2f7eb88 | 17238
+de/gastgeber/index.html -> /html/salzburg/de/gastgeber/index.html | a7c10eef153733223a4ee1294e8962d102842513fc7ce9b9b48e9201f32ed515 | 10501
+de/impressum/index.html -> /html/salzburg/de/impressum/index.html | 2a66ad0be53cc7b1e5c2f48665c50b3abccf4ae3afb32a996f7aad0a6c0393fb | 12020
+de/index.html -> /html/salzburg/de/index.html | 5d5fa24680fd0787b19de264892ac5332de8af7ba21fca9dfff36d6f628e378c | 16381
+de/kontakt/index.html -> /html/salzburg/de/kontakt/index.html | ce0280ff645363efe555eaf49adb305b3a274b70721f14fbace52d4b29e28794 | 9199
+de/touren/index.html -> /html/salzburg/de/touren/index.html | b2d2f514906e55c5dcd9dc141d05b4c2ae761157c3b510051c812f6017beea87 | 14602
+de/ueber/index.html -> /html/salzburg/de/ueber/index.html | aeb20e1f37098fc0a094ebfbfc2ad158274b355da8f00460244c1e10e310f993 | 15008
+favicon.svg -> /html/salzburg/favicon.svg | 2d987900bcccc434fc1a6e46a7459347bb4c162376ea442e65210d42292d9b43 | 312
+hosts/index.html -> /html/salzburg/hosts/index.html | ba8dfa995c5ef01b6cf57be49f6b145fb464f406c643d303e8eaaa4398e43e8e | 9880
+imprint/index.html -> /html/salzburg/imprint/index.html | b696efbf172fc1f309c843b0890172bb32fef92283fec8399dbf444c0d65a57f | 11342
+index.html -> /html/salzburg/index.html | f57c9e128f41103e2ccbee2b68da5e7d5c30ec0267b92a7bf67360f79824b881 | 16791
+planner/index.html -> /html/salzburg/planner/index.html | 1580140858b3b3d012aaf012ed41bfa3c740d04aa0d5456d3df01ef509162bfa | 15045
+privacy/index.html -> /html/salzburg/privacy/index.html | 3c3bb383e898f4764af786e39fb7f8677aaf65c58031e7ce23a1e572f0a985c4 | 15665
+robots.txt -> /html/salzburg/robots.txt | 52165558569707ffa62d15f202bbdef70bde454159771ac19a312bbc6cdd8cdb | 79
+sitemap.xml -> /html/salzburg/sitemap.xml | 2df4bdb3325f4c2fe9bd6f565ee09aae13ee92c8724c5703807288e45a67b9ff | 6395
+tours/getreidegasse/index.html -> /html/salzburg/tours/getreidegasse/index.html | c74c62dcb9bc5293e003778c637f822a6abd2d3ddd78b1826b94801880565227 | 42224
+tours/hellbrunn/index.html -> /html/salzburg/tours/hellbrunn/index.html | 57999e4b5a750ab59bd811813fc7947b0553ff478c4f0b69bb5a22dfd5628560 | 38130
+tours/index.html -> /html/salzburg/tours/index.html | bf7badeab6ff8bde3c1e0d1782726b8e33fff68c93251b8d596583cd8eba80e8 | 14337
+tours/kapuzinerberg/index.html -> /html/salzburg/tours/kapuzinerberg/index.html | 0c56962c9cd93fdd836d18d1046c0c04ffa99f47b69218d638b8b72edef1dff8 | 40424
+tours/leopoldskron/index.html -> /html/salzburg/tours/leopoldskron/index.html | dbc0f8f46a70e104d02a7d15faf3846fcd4f7806fe70fff521ce60fd47b5f2a5 | 36023
+tours/mirabell-to-fortress/index.html -> /html/salzburg/tours/mirabell-to-fortress/index.html | 231280b7684446463e9c558bf84a1cab576688dd2aa89dcd11d76c75be645c2d | 49257
+tours/nonnberg/index.html -> /html/salzburg/tours/nonnberg/index.html | 2b7391c974e662f77947ae51938de425a017183b62c19be5ac1655f08e0ab289 | 36116
+tours/untersberg/index.html -> /html/salzburg/tours/untersberg/index.html | d58dc22d06471cb8d402a3657cc86a950b58723535e430e989cb951afa3fc4b3 | 37591
+tours/winter-salzburg/index.html -> /html/salzburg/tours/winter-salzburg/index.html | d189d83527222454cd267814ee94a5d697c48276f04a29f779c81a41775ccc37 | 43355
+
+== 2. Alte Live-Dateien, die durch Regeln in .htaccess überdeckt werden (NICHT löschen) ==
+/en.html -> 301 /
+/de.html -> 301 /de/
+/hi.html -> 301 /
+/zh.html -> 301 /
+/package-en.html -> 301 /tours/
+/package-hi.html -> 301 /tours/
+/package-zh.html -> 301 /tours/
+/package-de.html -> 301 /de/touren/
+/guide-en.html -> 301 /tours/
+/guide-hi.html -> 301 /tours/
+/guide-zh.html -> 301 /tours/
+/guide-de.html -> 301 /de/touren/
+/werbung.html -> 301 /
+/privacy.html -> 301 /privacy/
+/datenschutz.html -> 301 /de/datenschutz/
+/impressum.html -> 301 /imprint/
+/imprint.html -> 301 /imprint/
+/programmatic.js -> 410
+/programmatic-config.js -> 410
+/gam-adapter.js -> 410
+/portfolio-analytics.js -> 410
+/ad-preview.js -> 410
+/ads.css -> 410
+/guide-plan.css -> 410
+/guide-plan.js -> 410
+/avatars.png -> 410
+
+== 3. Legacy-Mapping alte URL -> neue URL (Anker bleiben beim Browser erhalten) ==
+https://www.salzburginharmony.com/en.html -> https://www.salzburginharmony.com/   # English start page; /en.html#imprint lands on the footer block id="imprint"
+https://www.salzburginharmony.com/de.html -> https://www.salzburginharmony.com/de/   # German start page; /de.html#imprint lands on the footer block id="imprint"
+https://www.salzburginharmony.com/hi.html -> https://www.salzburginharmony.com/   # Hindi copy removed; English start page
+https://www.salzburginharmony.com/zh.html -> https://www.salzburginharmony.com/   # Chinese copy removed; English start page
+https://www.salzburginharmony.com/package-en.html -> https://www.salzburginharmony.com/tours/   # the planned paid guide described stations of a Salzburg walk; the free walks replace it
+https://www.salzburginharmony.com/package-hi.html -> https://www.salzburginharmony.com/tours/   # as package-en.html (no Hindi pages any more)
+https://www.salzburginharmony.com/package-zh.html -> https://www.salzburginharmony.com/tours/   # as package-en.html (no Chinese pages any more)
+https://www.salzburginharmony.com/package-de.html -> https://www.salzburginharmony.com/de/touren/   # German overview of the walks
+https://www.salzburginharmony.com/guide-en.html -> https://www.salzburginharmony.com/tours/   # the free reading guide of five places is replaced by the eight walks
+https://www.salzburginharmony.com/guide-hi.html -> https://www.salzburginharmony.com/tours/   # as guide-en.html
+https://www.salzburginharmony.com/guide-zh.html -> https://www.salzburginharmony.com/tours/   # as guide-en.html
+https://www.salzburginharmony.com/guide-de.html -> https://www.salzburginharmony.com/de/touren/   # German overview of the walks
+https://www.salzburginharmony.com/werbung.html -> https://www.salzburginharmony.com/   # advertising media page removed
+https://www.salzburginharmony.com/privacy.html -> https://www.salzburginharmony.com/privacy/   # bilingual privacy page; anchors #google-analytics and #google-analytics-en exist on /privacy/ and /de/datenschutz/
+https://www.salzburginharmony.com/datenschutz.html -> https://www.salzburginharmony.com/de/datenschutz/   # German privacy policy
+https://www.salzburginharmony.com/impressum.html -> https://www.salzburginharmony.com/imprint/   # legal notice (German version: /de/impressum/)
+https://www.salzburginharmony.com/imprint.html -> https://www.salzburginharmony.com/imprint/   # legal notice
+https://www.salzburginharmony.com/en.html#imprint -> https://www.salzburginharmony.com/#imprint   # Rücksprung des Kontaktformular-Handlers (language=en)
+https://www.salzburginharmony.com/de.html#imprint -> https://www.salzburginharmony.com/de/#imprint   # Rücksprung des Kontaktformular-Handlers (language=de)
+https://www.salzburginharmony.com/privacy.html#google-analytics -> https://www.salzburginharmony.com/privacy/#google-analytics   # Analytics-Abschnitt

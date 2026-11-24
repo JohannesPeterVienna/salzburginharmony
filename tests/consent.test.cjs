@@ -3,7 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const fs = require('node:fs'), path = require('node:path');
 const loadScript = (f) => { const m = { exports: {} }; new Function('module', 'exports', fs.readFileSync(path.join(__dirname, '..', f), 'utf8'))(m, m.exports); return m.exports; };
-const C = loadScript('docs/assets/js/consent.js');
+const C = loadScript('src/static/assets/js/consent.js');
 
 const EU_YES = { gdprApplies: true, eventStatus: 'useractioncomplete', tcString: 'CPx', purpose: { consents: { 1: true } }, vendor: { consents: { 755: true } } };
 const CM_ALL = { adStoragePurposeConsentStatus: 1, adUserDataPurposeConsentStatus: 1, adPersonalizationPurposeConsentStatus: 1, analyticsStoragePurposeConsentStatus: 1 };
@@ -14,7 +14,7 @@ test('nothing known → everything denied', () => {
   assert.deepEqual(C.decide(EU_YES, null, 1), C.ALL_DENIED);
 });
 test('EU consent with purpose 1 + Google + Consent Mode granted → granted per purpose', () => {
-  assert.deepEqual(C.decide(EU_YES, CM_ALL, null), { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+  assert.deepEqual(C.decide(EU_YES, CM_ALL, null), { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'denied' }, 'analytics is never granted by the ad CMP');
   const partial = Object.assign({}, CM_ALL, { adPersonalizationPurposeConsentStatus: 2, analyticsStoragePurposeConsentStatus: 2 });
   assert.deepEqual(C.decide(EU_YES, partial, null), { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'denied', analytics_storage: 'denied' });
 });
@@ -28,7 +28,7 @@ test('EU: NOT_APPLICABLE (3) does not count as granted; missing purpose 1 or ven
 test('outside GDPR: granted or not applicable counts, but only with a clear U.S. status', () => {
   const out = { gdprApplies: false };
   const na = { adStoragePurposeConsentStatus: 3, adUserDataPurposeConsentStatus: 1, adPersonalizationPurposeConsentStatus: 3, analyticsStoragePurposeConsentStatus: 3 };
-  assert.deepEqual(C.decide(out, na, C.US_DOES_NOT_APPLY), { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+  assert.deepEqual(C.decide(out, na, C.US_DOES_NOT_APPLY), { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'denied' });
   assert.deepEqual(C.decide(out, na, C.US_NOT_OPTED_OUT).ad_storage, 'granted');
   assert.deepEqual(C.decide(out, na, C.US_OPTED_OUT), C.ALL_DENIED);
   assert.deepEqual(C.decide(out, na, null), C.ALL_DENIED);
@@ -39,55 +39,53 @@ test('decide never returns a shared object', () => {
   assert.equal(C.decide(null, null, null).ad_storage, 'denied');
   assert.equal(C.ALL_DENIED.ad_storage, 'denied');
 });
-
-test('cmpDecided / cmpShowing / cmpSpoke', () => {
-  assert.equal(C.cmpDecided(null), false);
-  assert.equal(C.cmpDecided({ eventStatus: 'tcloaded', tcString: '' }), false);
-  assert.equal(C.cmpDecided({ eventStatus: 'tcloaded', tcString: 'abc' }), true);
-  assert.equal(C.cmpDecided({ eventStatus: 'useractioncomplete' }), true);
+test('cmpShowing', () => {
+  assert.equal(C.cmpShowing(null), false);
   assert.equal(C.cmpShowing({ eventStatus: 'cmpuishown', displayStatus: 'hidden' }), false);
   assert.equal(C.cmpShowing({ eventStatus: 'cmpuishown', displayStatus: 'disabled' }), false);
   assert.equal(C.cmpShowing({ eventStatus: 'cmpuishown' }), true);
   assert.equal(C.cmpShowing({ displayStatus: 'visible' }), true);
-  assert.equal(C.cmpSpoke({ gdprApplies: false }), true);
-  assert.equal(C.cmpSpoke({ eventStatus: 'cmpuishown', displayStatus: 'hidden', gdprApplies: true }), false);
-});
-test('googleDeclinedAnalytics', () => {
-  assert.equal(C.googleDeclinedAnalytics(null, 2), false);
-  assert.equal(C.googleDeclinedAnalytics({ gdprApplies: false }, 2), true);
-  assert.equal(C.googleDeclinedAnalytics({ gdprApplies: false }, 1), false);
-  assert.equal(C.googleDeclinedAnalytics(EU_YES, 1), false);
-  assert.equal(C.googleDeclinedAnalytics(EU_YES, 2), true);
-  assert.equal(C.googleDeclinedAnalytics(Object.assign({}, EU_YES, { purpose: { consents: {} } }), 1), true);
-  assert.equal(C.googleDeclinedAnalytics(Object.assign({}, EU_YES, { eventStatus: 'cmpuishown' }), 2), false, 'no decision yet → not a clear no');
+  assert.equal(C.cmpShowing({ eventStatus: 'useractioncomplete' }), false);
 });
 
-test('statsRecord: valid, invalid, future, expired', () => {
-  const now = Date.UTC(2026, 10, 6);
-  assert.deepEqual(C.statsRecord(JSON.stringify({ v: 1, choice: 'granted', at: now - 1000 }), now), { v: 1, choice: 'granted', at: now - 1000 });
-  assert.equal(C.statsRecord('{bad json', now), null);
-  assert.equal(C.statsRecord(null, now), null);
-  assert.equal(C.statsRecord({ v: 2, choice: 'granted', at: now - 1 }, now), null, 'wrong version');
-  assert.equal(C.statsRecord({ v: 1, choice: 'maybe', at: now - 1 }, now), null, 'wrong choice');
-  assert.equal(C.statsRecord({ v: 1, choice: 'denied', at: now + 60000 }, now), null, 'future');
-  const old = new Date(now); old.setMonth(old.getMonth() - 13);
-  assert.equal(C.statsRecord({ v: 1, choice: 'granted', at: old.getTime() }, now), null, 'older than 12 months');
-  const fresh = new Date(now); fresh.setMonth(fresh.getMonth() - 11);
-  assert.ok(C.statsRecord({ v: 1, choice: 'denied', at: fresh.getTime() }, now));
+// analytics choice: the record format of the privacy policy (tw-analytics-consent-v1, at most 180 days)
+test('analyticsRecord: valid, invalid, future, expired after 180 days', () => {
+  const now = Date.UTC(2026, 10, 24), day = 86400000;
+  assert.equal(C.ANALYTICS.KEY, 'tw-analytics-consent-v1');
+  assert.deepEqual(C.analyticsRecord(JSON.stringify({ version: 1, time: now - 1000, granted: true, ageConfirmed: null }), now), { granted: true, time: now - 1000 });
+  assert.deepEqual(C.analyticsRecord({ version: 1, time: now - day, granted: false }, now), { granted: false, time: now - day });
+  assert.equal(C.analyticsRecord('{bad json', now), null);
+  assert.equal(C.analyticsRecord(null, now), null);
+  assert.equal(C.analyticsRecord({ version: 2, time: now - 1, granted: true }, now), null, 'wrong version');
+  assert.equal(C.analyticsRecord({ version: 1, time: now - 1, granted: 'yes' }, now), null, 'granted must be boolean');
+  assert.equal(C.analyticsRecord({ version: 1, time: now + 60000, granted: true }, now), null, 'future');
+  assert.equal(C.analyticsRecord({ version: 1, time: now - 180 * day, granted: true }, now), null, '180 days is the limit');
+  assert.ok(C.analyticsRecord({ version: 1, time: now - 179 * day, granted: true }, now));
+  assert.deepEqual(C.analyticsEntry(true, now), { version: 1, time: now, granted: true, ageConfirmed: null });
 });
-test('statsAllowed: only active + not blocked + granted', () => {
-  const g = { v: 1, choice: 'granted', at: 1 }, d = { v: 1, choice: 'denied', at: 1 };
-  assert.equal(C.statsAllowed('active', false, g), true);
-  assert.equal(C.statsAllowed('active', true, g), false, 'GPC / U.S. opt-out');
-  assert.equal(C.statsAllowed('active', false, d), false);
-  assert.equal(C.statsAllowed('active', false, null), false, 'no choice is no consent');
-  assert.equal(C.statsAllowed('waiting', false, g), false);
-  assert.equal(C.statsAllowed('retired', false, g), false, 'Google decides');
-  assert.equal(C.statsAllowed('settings', false, g), false, 'no measurement on legal pages');
+test('analyticsBlocked: GPC, Do Not Track, U.S. opt-out', () => {
+  assert.equal(C.analyticsBlocked(false, null, null), false);
+  assert.equal(C.analyticsBlocked(true, null, null), true);
+  assert.equal(C.analyticsBlocked(false, '1', null), true);
+  assert.equal(C.analyticsBlocked(false, '0', null), false);
+  assert.equal(C.analyticsBlocked(false, null, C.US_OPTED_OUT), true);
+  assert.equal(C.analyticsBlocked(false, null, C.US_NOT_OPTED_OUT), false);
 });
-test('cookie helpers', () => {
-  assert.deepEqual(C.gaCookieNames('_ga=GA1.1.1; _ga_T00HRG2YVF=GS1; sih=x; _gat=1'), ['_ga', '_ga_T00HRG2YVF']);
+test('analyticsAllowed: only content page + not blocked + stored "granted"', () => {
+  const g = { granted: true, time: 1 }, d = { granted: false, time: 1 };
+  assert.equal(C.analyticsAllowed(false, false, g), true);
+  assert.equal(C.analyticsAllowed(true, false, g), false, 'no measurement on legal pages');
+  assert.equal(C.analyticsAllowed(false, true, g), false, 'GPC / DNT / U.S. opt-out');
+  assert.equal(C.analyticsAllowed(false, false, d), false);
+  assert.equal(C.analyticsAllowed(false, false, null), false, 'no choice is no consent');
+});
+test('cookie helpers and clean addresses', () => {
+  assert.deepEqual(C.gaCookieNames('twga_ga=GA1.1.1; twga_ga_T00HRG2YVF=GS1; _ga=x; sih=x; _gat=1; twgax=1'), ['twga_ga', 'twga_ga_T00HRG2YVF', '_ga']);
   assert.deepEqual(C.gaCookieNames(''), []);
   assert.deepEqual(C.cookieDomains('www.salzburginharmony.com'), ['', 'www.salzburginharmony.com', '.www.salzburginharmony.com', 'salzburginharmony.com', '.salzburginharmony.com']);
   assert.deepEqual(C.cookieDomains('localhost'), ['']);
+  assert.equal(C.cleanLocation('https://www.salzburginharmony.com', '/tours/hellbrunn/'), 'https://www.salzburginharmony.com/tours/hellbrunn/');
+  assert.equal(C.cleanReferrer('https://www.google.com/search?q=salzburg#x'), 'https://www.google.com/');
+  assert.equal(C.cleanReferrer(''), '');
+  assert.equal(C.cleanReferrer('android-app://x'), '');
 });
